@@ -1,4 +1,5 @@
-﻿using ActressMas;
+﻿using System;
+using ActressMas;
 
 namespace Reactive
 {
@@ -6,6 +7,7 @@ namespace Reactive
     {
         private static void Main(string[] args)
         {
+            Random rnd = new Random();
             //citesti fisieru ala de config si creeaza agentii cu parametri aia
             
             IntersectionEnv env = new IntersectionEnv(0, 100);
@@ -13,16 +15,17 @@ namespace Reactive
             var streetGridAgent = new StreetGridAgent();
             env.Add(streetGridAgent, "streetGridAgent");
             
-            for (int i = 1; i <= Utils.NoCars; i++)
+            for (int i = 0; i < Utils.NoCars; i++)
             {
-                var explorerAgent = new CarAgent();
-                env.Add(explorerAgent, "car" + i);
+                var carAgent = new CarAgent(0,rnd.Next(4), 1, 1, i);
+                env.Add(carAgent, "car" + i);
             }
             
-            for (int i = 1; i <= Utils.NoSemaphores; i++)
+            //da pozitiile semafoarelor; (3,1), (3,3), (3,5)
+            for (int i = 0; i < Utils.NoSemaphores; i++)
             {
-                var explorerAgent = new SemaphoreAgent();
-                env.Add(explorerAgent, "explorer" + i);
+                var semaphoreAgent = new SemaphoreAgent((3 + (i / 4) * 2), i % 4,  1, 1);
+                env.Add(semaphoreAgent, "explorer" + i);
             }
             
 

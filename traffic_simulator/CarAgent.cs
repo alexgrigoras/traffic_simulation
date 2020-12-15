@@ -16,10 +16,12 @@ namespace Reactive
 
         private enum State { Free, Carrying };
 
-        // public CarAgent(int intelligence, int priority, int turnsBeforeSpawning)
-        // {
-        //     
-        // }
+        public CarAgent(int pos_X, int pos_Y, int intelligence, int priority, int turnsBeforeSpawning)
+        {
+            this.intelligence = intelligence;
+            this.priority = priority;
+            this.turnsBeforeSpawning = turnsBeforeSpawning;
+        }
         
         public override void Setup()
         {

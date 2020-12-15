@@ -7,6 +7,7 @@ namespace Reactive
     //TODO: modifica clasa
     public class SemaphoreAgent : TurnBasedAgent
     {
+        // pozitia in matrice; (0;0)
         private int _x, _y;
         private State _state;
         private string _resourceCarried;
@@ -15,7 +16,13 @@ namespace Reactive
 
         private enum State { Free, Carrying };
 
-        //constructor
+        public SemaphoreAgent(int pos_x, int pos_y, int intelligence, int priority)
+        {
+            this._x = pos_x;
+            this._y = pos_y;
+            this.intelligence = intelligence;
+            this.priority = priority;
+        }
         
         public override void Setup()
         {
