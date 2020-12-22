@@ -6,7 +6,7 @@ namespace Reactive
     public class Utils
     {
         public static int Size = 11;
-        public static int NoCars = 20;
+        public static int NoCars = 4;
         public static int NoSemaphores = 4;
         public static int NoResources = 10;
 

@@ -17,16 +17,16 @@ namespace Reactive
             
             for (int i = 0; i < Utils.NoCars; i++)
             {
-                var carAgent = new CarAgent(0,rnd.Next(4), 1, 1, i);
+                var carAgent = new CarAgent(rnd.Next(8)/2, 0, rnd.Next(8)/2, 4, 1, 1, i);
                 env.Add(carAgent, "car" + i);
             }
             
             //da pozitiile semafoarelor; (3,1), (3,3), (3,5)
-            for (int i = 0; i < Utils.NoSemaphores; i++)
-            {
-                var semaphoreAgent = new SemaphoreAgent((3 + (i / 4) * 2), i % 4,  1, 1);
-                env.Add(semaphoreAgent, "explorer" + i);
-            }
+            // for (int i = 0; i < Utils.NoSemaphores; i++)
+            // {
+            //     var semaphoreAgent = new SemaphoreAgent((3 + (i / 4) * 2), i % 4,  1);
+            //     env.Add(semaphoreAgent, "explorer" + i);
+            // }
             
 
             env.Start();

@@ -48,11 +48,11 @@
   <ItemGroup>
     <Compile Include="CarAgent.cs" />
     <Compile Include="IntersectionEnv.cs" />
-    <Compile Include="PlanetForm.cs">
+    <Compile Include="IntersectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlanetForm.Designer.cs">
-      <DependentUpon>PlanetForm.cs</DependentUpon>
+    <Compile Include="IntersectionForm.Designer.cs">
+      <DependentUpon>IntersectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SemaphoreAgent.cs" />
     <Compile Include="StreetGridAgent.cs" />
@@ -64,8 +64,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PlanetForm.resx">
-      <DependentUpon>PlanetForm.cs</DependentUpon>
+    <EmbeddedResource Include="IntersectionForm.resx">
+      <DependentUpon>IntersectionForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

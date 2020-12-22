@@ -7,17 +7,25 @@ namespace Reactive
     public class CarAgent : TurnBasedAgent
     {
         private int _x, _y;
-        private State _state;
+        private int _x_end, _y_end;
         private string _resourceCarried;
         private int intelligence;
         private int priority;
         //cu parametrul asta setam cate sa porneasca deodata, o sa fie dat la constructor
         private int turnsBeforeSpawning;
 
-        private enum State { Free, Carrying };
+        private int wantToMoveHere_X;
+        private int wantToMoveHere_Y;
 
-        public CarAgent(int pos_X, int pos_Y, int intelligence, int priority, int turnsBeforeSpawning)
+        //private enum State { Free, Carrying };
+
+        public CarAgent(int pos_X, int pos_Y, int pos_X_end, int pos_Y_end, int intelligence, int priority, int turnsBeforeSpawning)
         {
+            this._x = pos_X;
+            this._y = pos_Y;
+            this._x_end = pos_X_end;
+            this._y_end = pos_Y_end;
+            
             this.intelligence = intelligence;
             this.priority = priority;
             this.turnsBeforeSpawning = turnsBeforeSpawning;
@@ -27,24 +35,10 @@ namespace Reactive
         {
             Console.WriteLine("Starting " + Name);
 
-            _x = Utils.Size / 2;
-            _y = Utils.Size / 2;
-            _state = State.Free;
-
-            while (IsAtBase())
-            {
-                _x = Utils.RandNoGen.Next(Utils.Size);
-                _y = Utils.RandNoGen.Next(Utils.Size);
-            }
-
-            Send("planet", Utils.Str("position", _x, _y));
+            Send("streetGridAgent", Utils.Str("spawn", _x, _y));
         }
 
-        private bool IsAtBase()
-        {
-            return (_x == Utils.Size / 2 && _y == Utils.Size / 2); // the position of the base
-        }
-
+        // 
         public override void Act(Queue<Message> messages)
         {
             while(messages.Count > 0)
@@ -57,61 +51,37 @@ namespace Reactive
                 List<string> parameters;
                 Utils.ParseMessage(message.Content, out action, out parameters);
 
-                if (action == "block")
+                if (action == "wait")
                 {
-                    // R1. If you detect an obstacle, then change direction
-                    MoveRandomly();
-                    Send("planet", Utils.Str("change", _x, _y));
-                }
-                else if (action == "move" && _state == State.Carrying && IsAtBase())
-                {
-                    // R2. If carrying samples and at the base, then unload samples
-                    _state = State.Free;
-                    Send("planet", Utils.Str("unload", _resourceCarried));
-                }
-                else if (action == "move" && _state == State.Carrying && !IsAtBase())
-                {
-                    // R3. If carrying samples and not at the base, then travel up gradient
-                    MoveToBase();
-                    Send("planet", Utils.Str("carry", _x, _y));
-                }
-                else if (action == "rock")
-                {
-                    // R4. If you detect a sample, then pick sample up
-                    _state = State.Carrying;
-                    _resourceCarried = parameters[0];
-                    Send("planet", Utils.Str("pick-up", _resourceCarried));
+                    thinkAboutNextMove();
                 }
                 else if (action == "move")
                 {
-                    // R5. If (true), then move randomly
-                    MoveRandomly();
-                    Send("planet", Utils.Str("change", _x, _y));
+                    this._x = wantToMoveHere_X;
+                    this._y = wantToMoveHere_Y;
+                    Send("streetGridAgent", Utils.Str("change", _x, _y));
+                }
+                else if (action == "info")
+                {
+                    //some code
+                    //send ("i'm trying to move here", x, y)
+                }
+                else if (action == "done")
+                {
+                    //destination reached
+                }
+                else
+                {
+                    Console.WriteLine("I'M DONE LUL");
+                    break;
                 }
             }
         }
 
-        private void MoveRandomly()
+        private void thinkAboutNextMove()
         {
-            int d = Utils.RandNoGen.Next(4);
-            switch (d)
-            {
-                case 0: if (_x > 0) _x--; break;
-                case 1: if (_x < Utils.Size - 1) _x++; break;
-                case 2: if (_y > 0) _y--; break;
-                case 3: if (_y < Utils.Size - 1) _y++; break;
-            }
-        }
-
-        private void MoveToBase()
-        {
-            int dx = _x - Utils.Size / 2;
-            int dy = _y - Utils.Size / 2;
-
-            if (Math.Abs(dx) > Math.Abs(dy))
-                _x -= Math.Sign(dx);
-            else
-                _y -= Math.Sign(dy);
+            wantToMoveHere_X = _x;
+            wantToMoveHere_Y = _y + 1;
         }
     }
 }

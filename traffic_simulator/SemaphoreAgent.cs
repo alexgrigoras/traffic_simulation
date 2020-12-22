@@ -12,16 +12,14 @@ namespace Reactive
         private State _state;
         private string _resourceCarried;
         private int intelligence;
-        private int priority;
 
         private enum State { Free, Carrying };
 
-        public SemaphoreAgent(int pos_x, int pos_y, int intelligence, int priority)
+        public SemaphoreAgent(int pos_x, int pos_y, int intelligence)
         {
             this._x = pos_x;
             this._y = pos_y;
             this.intelligence = intelligence;
-            this.priority = priority;
         }
         
         public override void Setup()

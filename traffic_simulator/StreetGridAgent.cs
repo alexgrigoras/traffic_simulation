@@ -9,18 +9,12 @@ namespace Reactive
 {
     public class StreetGridAgent : TurnBasedAgent
     {
-        private PlanetForm _formGui;
-        public Dictionary<string, string> ExplorerPositions { get; set; }
-        public Dictionary<string, string> ResourcePositions { get; set; }
-        public Dictionary<string, string> Loads { get; set; }
-        private string _basePosition;
+        private IntersectionForm _formGui;
+        public Dictionary<string, KeyValuePair<int, int>> CarPositions { get; set; }
 
         public StreetGridAgent()
         {
-            ExplorerPositions = new Dictionary<string, string>();
-            ResourcePositions = new Dictionary<string, string>();
-            Loads = new Dictionary<string, string>();
-            _basePosition = Utils.Str(Utils.Size / 2, Utils.Size / 2);
+            CarPositions = new Dictionary<string, KeyValuePair<int, int>>();
 
             Thread t = new Thread(new ThreadStart(GUIThread));
             t.Start();
@@ -28,7 +22,7 @@ namespace Reactive
 
         private void GUIThread()
         {
-            _formGui = new PlanetForm();
+            _formGui = new IntersectionForm();
             _formGui.SetOwner(this);
             _formGui.ShowDialog();
             Application.Run();
@@ -37,23 +31,6 @@ namespace Reactive
         public override void Setup()
         {
             Console.WriteLine("Starting " + Name);
-
-            List<string> resPos = new List<string>();
-            string compPos = Utils.Str(Utils.Size / 2, Utils.Size / 2);
-            resPos.Add(compPos); // the position of the base
-
-            for (int i = 1; i <= Utils.NoResources; i++)
-            {
-                while (resPos.Contains(compPos)) // resources do not overlap
-                {
-                    int x = Utils.RandNoGen.Next(Utils.Size);
-                    int y = Utils.RandNoGen.Next(Utils.Size);
-                    compPos = Utils.Str(x, y);
-                }
-
-                ResourcePositions.Add("res" + i, compPos);
-                resPos.Add(compPos);
-            }
         }
 
         public override void Act(Queue<Message> messages)
@@ -68,24 +45,17 @@ namespace Reactive
 
                 switch (action)
                 {
-                    case "position":
-                        HandlePosition(message.Sender, parameters);
+                    // vezi exact flow-ul aici, cum trimite masina, cum ii trimite inapoi masinii
+                    case "spawn":
+                        HandleSpawn(message.Sender, parameters);
                         break;
 
                     case "change":
                         HandleChange(message.Sender, parameters);
                         break;
-
-                    case "pick-up":
-                        HandlePickUp(message.Sender, parameters);
-                        break;
-
-                    case "carry":
-                        HandleCarry(message.Sender, parameters);
-                        break;
-
-                    case "unload":
-                        HandleUnload(message.Sender);
+                    
+                    case "moved":
+                        HandleMoved(message.Sender, parameters);
                         break;
 
                     default:
@@ -95,57 +65,40 @@ namespace Reactive
             }
         }
 
-        private void HandlePosition(string sender, string position)
+        private void HandleSpawn(string sender, string position)
         {
-            ExplorerPositions.Add(sender, position);
-            Send(sender, "move");
+            string[] positionsList = position.Split(' ');
+            CarPositions.Add(sender, new KeyValuePair<int, int>(int.Parse(positionsList[0]), int.Parse(positionsList[1])));
+            Send(sender, "wait");
         }
 
         private void HandleChange(string sender, string position)
         {
-            ExplorerPositions[sender] = position;
+            string[] positionsList = position.Split(' ');
+            //test daca actually se poate misca unde vrea el
 
-            foreach (string k in ExplorerPositions.Keys)
+            if (int.Parse(positionsList[1]) == 6)
             {
-                if (k == sender)
-                    continue;
-                if (ExplorerPositions[k] == position)
-                {
-                    Send(sender, "block");
-                    return;
-                }
+                CarPositions[sender] = new KeyValuePair<int, int>(int.Parse(positionsList[0]), int.Parse(positionsList[1]));
+                Send(sender, "done");
             }
 
-            foreach (string k in ResourcePositions.Keys)
+            if (true)
             {
-                if (position != _basePosition && ResourcePositions[k] == position)
-                {
-                    Send(sender, "rock " + k);
-                    return;
-                }
+                CarPositions[sender] = new KeyValuePair<int, int>(int.Parse(positionsList[0]), int.Parse(positionsList[1]));
+                Send(sender, "move");
             }
-
-            Send(sender, "move");
+            else
+            {
+                Send(sender, "wait");
+            }
+            
+            
         }
 
-        private void HandlePickUp(string sender, string position)
+        private void HandleMoved(string sender, string position)
         {
-            Loads[sender] = position;
-            Send(sender, "move");
-        }
-
-        private void HandleCarry(string sender, string position)
-        {
-            ExplorerPositions[sender] = position;
-            string res = Loads[sender];
-            ResourcePositions[res] = position;
-            Send(sender, "move");
-        }
-
-        private void HandleUnload(string sender)
-        {
-            Loads.Remove(sender);
-            Send(sender, "move");
+            Send(sender, "wait");
         }
     }
 }

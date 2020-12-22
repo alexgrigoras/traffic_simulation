@@ -9,3 +9,13 @@ D:\Faculta\SMA\Proj\Reactive\traffic_simulator\obj\Debug\traffic_simulator.cspro
 D:\Faculta\SMA\Proj\Reactive\traffic_simulator\obj\Debug\traffic_simulator.csproj.CopyComplete
 D:\Faculta\SMA\Proj\Reactive\traffic_simulator\obj\Debug\traffic_simulator.exe
 D:\Faculta\SMA\Proj\Reactive\traffic_simulator\obj\Debug\traffic_simulator.pdb
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\bin\Debug\traffic_simulator.exe.config
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\bin\Debug\traffic_simulator.exe
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\bin\Debug\traffic_simulator.pdb
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\traffic_simulator.csprojAssemblyReference.cache
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\traffic_simulator.csproj.GenerateResource.cache
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\traffic_simulator.csproj.CoreCompileInputs.cache
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\traffic_simulator.csproj.CopyComplete
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\traffic_simulator.exe
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\traffic_simulator.pdb
+C:\Users\Afi\Documents\GitHub\traffic_simulation\traffic_simulator\obj\Debug\Reactive.IntersectionForm.resources

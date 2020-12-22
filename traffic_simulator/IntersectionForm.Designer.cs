@@ -1,6 +1,6 @@
 ﻿namespace Reactive
 {
-    partial class PlanetForm
+    partial class IntersectionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(595, 591);
             this.Controls.Add(this.pictureBox);
-            this.Name = "PlanetForm";
+            this.Name = "IntersectionForm";
             this.Text = "Planet";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
