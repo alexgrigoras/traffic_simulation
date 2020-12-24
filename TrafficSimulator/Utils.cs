@@ -6,10 +6,12 @@ namespace TrafficSimulator
     public static class Utils
     {
         public static int Size = 7;
-        public static int NoExplorers = 100;
-        public static int NoTrafficLights = 0;
-        public static int NoCarsPerCell = 3;    // grid with NoCarsPerCell*NoCarsPerCell cars
+        public static int NoCars = 20;
+        public static int NoCarsPerCell = 3;        // grid with NoCarsPerCell*NoCarsPerCell cars
+        public static int NoStartingPoints = 4;
         public enum TrafficLightState { Green, Red };
+        public enum CarPriorityState { GreenLight, LowerTraffic };
+        public enum TrafficLightIntelligenceState { L0, L1, L2, L3 };
         public static Random RandNoGen = new Random();
 
         public static void ParseMessage(string content, out string action, out List<string> parameters)

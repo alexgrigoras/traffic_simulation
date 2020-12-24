@@ -12,17 +12,11 @@ namespace TrafficSimulator
         private IntersectionForm _formGui;
         public Dictionary<string, string> CarPositions { get; set; }
         public Dictionary<string, string> TrafficLightPositions { get; set; }
-        public Dictionary<string, string> ResourcePositions { get; set; }
-        public Dictionary<string, string> Loads { get; set; }
-        private string _basePosition;
-
+        
         public IntersectionAgent()
         {
             CarPositions = new Dictionary<string, string>();
             TrafficLightPositions = new Dictionary<string, string>();
-            ResourcePositions = new Dictionary<string, string>();
-            Loads = new Dictionary<string, string>();
-            _basePosition = Utils.Str(Utils.Size / 2, Utils.Size / 2);
 
             Thread t = new Thread(new ThreadStart(GUIThread));
             t.Start();
@@ -57,13 +51,17 @@ namespace TrafficSimulator
                     case "position":
                         HandlePosition(message.Sender, parameters);
                         break;
-                    
+
                     case "trafficLight":
                         HandleTrafficLightPosition(message.Sender, parameters);
                         break;
-                    
+
                     case "changeLight":
                         HandleChangeLight(message.Sender, parameters);
+                        break;
+                    
+                    case "noChangeLight":
+                        HandleNoChangeLight(message.Sender, parameters);
                         break;
 
                     case "change":
@@ -73,15 +71,10 @@ namespace TrafficSimulator
                     case "finish":
                         RemoveCar(message.Sender);
                         break;
-
-                    default:
-                        break;
                 }
-                                            
+                
                 _formGui.UpdatePlanetGUI();
             }
-            
-            //_formGui.UpdatePlanetGUI();
         }
 
         private void HandlePosition(string sender, string position)
@@ -99,6 +92,11 @@ namespace TrafficSimulator
         private void HandleChangeLight(string sender, string position)
         {
             TrafficLightPositions[sender] = position; 
+            Send(sender, "change");
+        }
+        
+        private void HandleNoChangeLight(string sender, string position)
+        {
             Send(sender, "change");
         }
         
@@ -124,27 +122,5 @@ namespace TrafficSimulator
 
             Send(sender, "move");
         }
-
-        /*
-        private void HandlePickUp(string sender, string position)
-        {
-            Loads[sender] = position;
-            Send(sender, "move");
-        }
-
-        private void HandleCarry(string sender, string position)
-        {
-            ExplorerPositions[sender] = position;
-            string res = Loads[sender];
-            ResourcePositions[res] = position;
-            Send(sender, "move");
-        }
-
-        private void HandleUnload(string sender)
-        {
-            Loads.Remove(sender);
-            Send(sender, "move");
-        }
-        */
     }
 }

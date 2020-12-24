@@ -1,33 +1,32 @@
 ﻿using ActressMas;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace TrafficSimulator
 {
     public class CarAgent : TurnBasedAgent
     {
-        private int _id;
+        private readonly int _id;
         private int _x, _y;
-        //private State _state;
+        private readonly int _startPos;
         private readonly int _skippedTurns;
+        
         private int _turns;
         private int _finalX, _finalY;
         private bool[,] _unavailableCells;
 
-        public CarAgent(int id, int skippedTurns)
+        public CarAgent(int id, int skippedTurns, int startPos)
         {
-            this._id = id;
-            this._turns = 1;
-            this._skippedTurns = skippedTurns;
+            _id = id;
+            _turns = 1;
+            _skippedTurns = skippedTurns;
+            _startPos = startPos;
         }
-
-        private enum State { Free, Carrying };
-
+        
         public override void Setup()
         {
             //_state = State.Free;
-            _x = Utils.RandNoGen.Next(Utils.Size);
+            _x = _startPos;
             _y = Utils.Size;
             _finalX = Utils.RandNoGen.Next(Utils.Size);
             _finalY = 0;
@@ -43,7 +42,7 @@ namespace TrafficSimulator
             }
 
             Console.WriteLine("Starting " + Name + " - going to (" + _finalX + "," + _finalY + ")");
-            
+
             Send("planet", Utils.Str("position", _x, _y, _id));
         }
 

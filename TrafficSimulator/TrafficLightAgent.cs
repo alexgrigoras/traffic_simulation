@@ -10,12 +10,15 @@ namespace TrafficSimulator
         private int _id;
         private int _x, _y;
         private Utils.TrafficLightState _state;
+        private int _noTurns;
+        private int _currentNoTurns;
 
-        public TrafficLightAgent(int id, int posX, int posY)
+        public TrafficLightAgent(int id, int posX, int posY, int noTurns)
         {
-            this._id = id;
-            this._x = posX;
-            this._y = posY;
+            _id = id;
+            _x = posX;
+            _y = posY;
+            _noTurns = noTurns;
         }
 
         public override void Setup()
@@ -41,8 +44,17 @@ namespace TrafficSimulator
                 
                 if (action == "change")
                 {
-                    SwitchState();
-                    Send("planet", Utils.Str("changeLight", _x, _y, _state));
+                    if (_currentNoTurns == _noTurns)
+                    {
+                        SwitchState();
+                        _currentNoTurns = 0;
+                        Send("planet", Utils.Str("changeLight", _x, _y, _state));
+                    }
+                    else
+                    {
+                        Send("planet", Utils.Str("noChangeLight", _x, _y));
+                    }
+                    _currentNoTurns++;
                 }
             }
         }

@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/Utils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" afterDir="false" />
     </list>
@@ -47,11 +44,13 @@
       <option value="$PROJECT_DIR$/Reactive/IntersectionAgent.cs" />
       <option value="$PROJECT_DIR$/Reactive/IntersectionForm.cs" />
       <option value="$PROJECT_DIR$/Reactive/Program.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/Utils.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/Program.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" />
+      <option value="$PROJECT_DIR$/README.md" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/Utils.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/Program.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kk3x2hm8ATvjaalbJcy3C07XmY" />
@@ -103,7 +102,8 @@
       <workItem from="1608665760078" duration="5129000" />
       <workItem from="1608738761954" duration="11001000" />
       <workItem from="1608757071658" duration="3573000" />
-      <workItem from="1608795982791" duration="6253000" />
+      <workItem from="1608795982791" duration="6946000" />
+      <workItem from="1608825234100" duration="5447000" />
     </task>
     <servers />
   </component>
