@@ -10,15 +10,17 @@ namespace TrafficSimulator
         private int _id;
         private int _x, _y;
         private Utils.TrafficLightState _state;
+        private Utils.TrafficLightIntelligenceState _intelligenceState;
         private int _noTurns;
         private int _currentNoTurns;
 
-        public TrafficLightAgent(int id, int posX, int posY, int noTurns)
+        public TrafficLightAgent(int id, int posX, int posY, int noTurns, Utils.TrafficLightIntelligenceState intelligenceState)
         {
             _id = id;
             _x = posX;
             _y = posY;
             _noTurns = noTurns;
+            _intelligenceState = intelligenceState;
         }
 
         public override void Setup()

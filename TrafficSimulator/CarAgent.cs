@@ -10,17 +10,18 @@ namespace TrafficSimulator
         private int _x, _y;
         private readonly int _startPos;
         private readonly int _skippedTurns;
-        
         private int _turns;
         private int _finalX, _finalY;
         private bool[,] _unavailableCells;
+        private Utils.CarPriorityState _carPriority;
 
-        public CarAgent(int id, int skippedTurns, int startPos)
+        public CarAgent(int id, int skippedTurns, int startPos, Utils.CarPriorityState carPriority)
         {
             _id = id;
             _turns = 1;
             _skippedTurns = skippedTurns;
             _startPos = startPos;
+            _carPriority = carPriority;
         }
         
         public override void Setup()
