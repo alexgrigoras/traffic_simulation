@@ -38,6 +38,14 @@ namespace TrafficSimulator
             Thread.Sleep(1000);
             
             _trafficLightStates = new Utils.TrafficLightState[Utils.Size,Utils.Size];
+
+            for (int i = 0; i < Utils.Size; i++)
+            {
+                for (int j = 0; j < Utils.Size; j++)
+                {
+                    _trafficLightStates[i, j] = Utils.TrafficLightState.Unavailable;
+                }
+            }
         }
         
         public static void Print2DArray<T>(T[,] matrix)
@@ -107,7 +115,7 @@ namespace TrafficSimulator
         
         private void HandleChangeLight(string sender, string position)
         {
-            TrafficLightPositions[sender] = position; 
+            TrafficLightPositions[sender] = position;
             
             string[] t = position.Split();
             int x = Convert.ToInt32(t[0]);
@@ -131,8 +139,6 @@ namespace TrafficSimulator
 
         private void HandleChange(string sender, string position)
         {
-            CarPositions[sender] = position;
-
             foreach (string k in CarPositions.Keys)
             {
                 if (k == sender)
@@ -144,19 +150,39 @@ namespace TrafficSimulator
                 }
             }
             
-            string[] t = position.Split();
-            int x = Convert.ToInt32(t[0]);
-            int y = Convert.ToInt32(t[1]);
-            int id = Convert.ToInt32(t[2]);
+            string[] oldT = CarPositions[sender].Split();
+            int oldX = Convert.ToInt32(oldT[0]);
+            int oldY = Convert.ToInt32(oldT[1]);
+            
+            string[] newT = position.Split();
+            int newX = Convert.ToInt32(newT[0]);
+            int newY = Convert.ToInt32(newT[1]);
 
-            if (_trafficLightStates[x, y] == Utils.TrafficLightState.Red)
+            if (newY - oldY != 0)
             {
-                Send(sender, "block");
+                if (_trafficLightStates[newX, newY] == Utils.TrafficLightState.Red)
+                {
+                    Send(sender, "block");
+                }
+                else
+                {
+                    CarPositions[sender] = position;
+                    Send(sender, "move");   
+                }
             }
-            else
+            else if (newX - oldX != 0)
             {
-                Send(sender, "move");   
+                if (_trafficLightStates[newX, newY] == Utils.TrafficLightState.Green)
+                {
+                    Send(sender, "block");
+                }
+                else
+                {
+                    CarPositions[sender] = position;
+                    Send(sender, "move");   
+                }
             }
+
         }
     }
 }

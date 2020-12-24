@@ -107,27 +107,33 @@ namespace TrafficSimulator
                     string st = t[2];
                     Utils.TrafficLightState state = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState),st);
 
-                    Brush b1;
+                    Brush b1, b2;
                     switch(state)
                     {
                         case Utils.TrafficLightState.Green:
                             b1 = Brushes.Green;
+                            b2 = Brushes.Red;
                             break;
                         case  Utils.TrafficLightState.Red:
                             b1 = Brushes.Red;
+                            b2 = Brushes.Green;
                             break;
                         default:
                             b1 = Brushes.Red;
+                            b2 = Brushes.Green;
                             break;
                     }
                     RectangleF[] rects1 = {
                         new Rectangle(20 + x * cellSize, 20 + y * cellSize, cellSize / 10, cellSize),
-                        new Rectangle(20 + x * cellSize + cellSize, 20 + y * cellSize, cellSize / 10, cellSize),
+                        new Rectangle(20 + x * cellSize + cellSize, 20 + y * cellSize, cellSize / 10, cellSize)
+                    };
+                    RectangleF[] rects2 = {
                         new Rectangle(20 + x * cellSize, 20 + y * cellSize, cellSize, cellSize / 10),
                         new Rectangle(20 + x * cellSize, 20 + y * cellSize + cellSize, cellSize, cellSize / 10)
                     };
 
-                    g.FillRectangles(b1, rects1);
+                    g.FillRectangles(b2, rects1);
+                    g.FillRectangles(b1, rects2);
                 }
 
                 RectangleF[] startingPointRects = new RectangleF[Utils.NoStartingPoints];
