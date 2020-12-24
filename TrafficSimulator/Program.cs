@@ -34,24 +34,33 @@ namespace TrafficSimulator
             int lightSwitchingTime = 10; // Number of turns
         
             // Build environment
-            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 300);
-
+            
+            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 100);
             var planetAgent = new IntersectionAgent();
         
-            for (int j = 2; j <= 4; j += 2)
+            // Traffic lights
+            Utils.TrafficLightState initialState = Utils.TrafficLightState.Green;
+            for (int j = 2; j < Utils.Size - 1; j += 2)
             {
-                for (int i = 0; i < 8; i += 2)
+                for (int i = 0; i < Utils.Size; i += 2)
                 {
                     int index = i * 2 + j;
+
                     var trafficLightAgent = new TrafficLightAgent(index, i, j, lightSwitchingTime, 
-                        trafficLightIntelligence);
+                        initialState, trafficLightIntelligence);
                     env.Add(trafficLightAgent, "trafficLight" + index);
+                    
+                    // Change state
+                    if (initialState == Utils.TrafficLightState.Green)
+                        initialState = Utils.TrafficLightState.Red;
+                    else
+                        initialState = Utils.TrafficLightState.Green;
                 }
             }
 
+            // Cars
             int carIndex = 0;
             int noCarsLeft = Utils.NoCars;
-        
             while (noCarsLeft != 0)
             {
                 for (int i = 0; i < Utils.NoStartingPoints && noCarsLeft != 0; i++)
@@ -65,7 +74,6 @@ namespace TrafficSimulator
                     }
                 }
             }
-        
             env.Add(planetAgent, "planet");
         
             // Start Environment

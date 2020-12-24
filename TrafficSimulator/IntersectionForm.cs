@@ -153,11 +153,16 @@ namespace TrafficSimulator
                     string id = t[2];
                     int idInt = Convert.ToInt32(id);
                     int nrCarsCellCount = nrCarsPerCell[x * Utils.Size + y];
-                    
+
                     if (nrCarsCellCount > 0 && nrCarsCellCount < 9)
                     {
                         offsetX = (nrCarsCellCount / Utils.NoCarsPerCell) * (cellSize / Utils.NoCarsPerCell);
                         offsetY = (nrCarsCellCount % Utils.NoCarsPerCell) * (cellSize / Utils.NoCarsPerCell);
+                    }
+                    else
+                    {
+                        offsetX = 0;
+                        offsetY = 0;
                     }
                     
                     Rectangle rect = new Rectangle(20 + x * cellSize + offsetX, 20 + y * cellSize + offsetY, 

@@ -75,7 +75,7 @@ namespace TrafficSimulator
                     {
                         //_state = State.Free;
                         Console.WriteLine("\t[{0}]: Arrived at destination", this.Name);
-                        Send("planet", Utils.Str("finish", _id));
+                        Send("planet", Utils.Str("finish",  _x, _y, _id));
                         this.Stop();
                     }
                     else if (action == "move")

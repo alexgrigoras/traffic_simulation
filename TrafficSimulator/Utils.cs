@@ -6,7 +6,7 @@ namespace TrafficSimulator
     public static class Utils
     {
         public static int Size = 7;
-        public static int NoCars = 50;
+        public static int NoCars = 100;
         public static int NoCarsPerCell = 3;        // grid with NoCarsPerCell*NoCarsPerCell cars
         public static int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
         public static int NoStartingPoints = (Size+1) / 2;
@@ -55,6 +55,19 @@ namespace TrafficSimulator
         public static string Str(object p1, object p2, object p3, object p4)
         {
             return string.Format("{0} {1} {2} {3}", p1, p2, p3, p4);
+        }
+        
+                
+        public static void Print2DArray<T>(T[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i,j] + "\t");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

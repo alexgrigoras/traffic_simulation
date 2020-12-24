@@ -14,21 +14,20 @@ namespace TrafficSimulator
         private int _noTurns;
         private int _currentNoTurns;
 
-        public TrafficLightAgent(int id, int posX, int posY, int noTurns, Utils.TrafficLightIntelligenceState intelligenceState)
+        public TrafficLightAgent(int id, int posX, int posY, int noTurns, Utils.TrafficLightState initialState, 
+            Utils.TrafficLightIntelligenceState intelligenceState)
         {
             _id = id;
             _x = posX;
             _y = posY;
             _noTurns = noTurns;
             _intelligenceState = intelligenceState;
+            _state = initialState;
         }
 
         public override void Setup()
         {
-            _state = Utils.TrafficLightState.Green;
-            
-            Console.WriteLine("Starting " + Name);
-            
+            Console.WriteLine("Starting {0} with state {1}", Name, _state);
             Send("planet", Utils.Str("trafficLight", _x, _y, _state));
         }
 
