@@ -10,6 +10,7 @@ namespace TrafficSimulator
         public static int NoCarsPerCell = 3;        // grid with NoCarsPerCell*NoCarsPerCell cars
         public static int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
         public static int NoStartingPoints = (Size+1) / 2;
+        public static int LightSwitchingTime = 10;
         public enum TrafficLightState { Green, Red, Unavailable };
         public enum CarPriorityState { GreenLight, LowerTraffic };
         public enum TrafficLightIntelligenceState { L0, L1, L2, L3 };

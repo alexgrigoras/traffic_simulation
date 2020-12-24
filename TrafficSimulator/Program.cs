@@ -31,10 +31,7 @@ namespace TrafficSimulator
             Utils.CarPriorityState carsPriority = 
                 (Utils.CarPriorityState) Enum.Parse(typeof(Utils.CarPriorityState), sAttr);
 
-            int lightSwitchingTime = 10; // Number of turns
-        
             // Build environment
-            
             TurnBasedEnvironment env = new TurnBasedEnvironment(0, 100);
             var planetAgent = new IntersectionAgent();
         
@@ -46,7 +43,7 @@ namespace TrafficSimulator
                 {
                     int index = i * 2 + j;
 
-                    var trafficLightAgent = new TrafficLightAgent(index, i, j, lightSwitchingTime, 
+                    var trafficLightAgent = new TrafficLightAgent(index, i, j, Utils.LightSwitchingTime, 
                         initialState, trafficLightIntelligence);
                     env.Add(trafficLightAgent, "trafficLight" + index);
                     
