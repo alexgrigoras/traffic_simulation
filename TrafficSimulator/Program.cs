@@ -1,7 +1,6 @@
 ﻿using ActressMas;
 using System;
 using System.Configuration;
-using System.Collections.Specialized;
 
 namespace TrafficSimulator
 {
@@ -32,10 +31,10 @@ namespace TrafficSimulator
             Utils.CarPriorityState carsPriority = 
                 (Utils.CarPriorityState) Enum.Parse(typeof(Utils.CarPriorityState), sAttr);
 
-            int lightSwitchingTime = 5; // Number of turns
+            int lightSwitchingTime = 10; // Number of turns
         
             // Build environment
-            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 100);
+            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 300);
 
             var planetAgent = new IntersectionAgent();
         

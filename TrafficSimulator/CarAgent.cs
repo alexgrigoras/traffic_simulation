@@ -68,14 +68,14 @@ namespace TrafficSimulator
 
                     if (action == "block")
                     {
-                        //MoveToDestination();
+                        Console.WriteLine("\t[{0}]: waits at RED", this.Name);
                         Send("planet", Utils.Str("change", _x, _y, _id));
                     }
                     else if (action == "move" && IsAtDestination())
                     {
                         //_state = State.Free;
                         Console.WriteLine("\t[{0}]: Arrived at destination", this.Name);
-                        Send("planet", Utils.Str("finished", _id));
+                        Send("planet", Utils.Str("finish", _id));
                         this.Stop();
                     }
                     else if (action == "move")

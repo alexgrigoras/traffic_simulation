@@ -13,6 +13,8 @@ namespace TrafficSimulator
         public Dictionary<string, string> CarPositions { get; set; }
         public Dictionary<string, string> TrafficLightPositions { get; set; }
         
+        private Utils.TrafficLightState[,] _trafficLightStates;
+        
         public IntersectionAgent()
         {
             CarPositions = new Dictionary<string, string>();
@@ -34,6 +36,20 @@ namespace TrafficSimulator
         {
             Console.WriteLine("Starting " + Name);
             Thread.Sleep(1000);
+            
+            _trafficLightStates = new Utils.TrafficLightState[Utils.Size,Utils.Size];
+        }
+        
+        public static void Print2DArray<T>(T[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i,j] + "\t");
+                }
+                Console.WriteLine();
+            }
         }
 
         public override void Act(Queue<Message> messages)
@@ -92,6 +108,14 @@ namespace TrafficSimulator
         private void HandleChangeLight(string sender, string position)
         {
             TrafficLightPositions[sender] = position; 
+            
+            string[] t = position.Split();
+            int x = Convert.ToInt32(t[0]);
+            int y = Convert.ToInt32(t[1]);
+            Utils.TrafficLightState state = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[2]);
+
+            _trafficLightStates[x, y] = state;
+            
             Send(sender, "change");
         }
         
@@ -119,8 +143,20 @@ namespace TrafficSimulator
                     return;
                 }
             }
+            
+            string[] t = position.Split();
+            int x = Convert.ToInt32(t[0]);
+            int y = Convert.ToInt32(t[1]);
+            int id = Convert.ToInt32(t[2]);
 
-            Send(sender, "move");
+            if (_trafficLightStates[x, y] == Utils.TrafficLightState.Red)
+            {
+                Send(sender, "block");
+            }
+            else
+            {
+                Send(sender, "move");   
+            }
         }
     }
 }
