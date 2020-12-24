@@ -34,25 +34,9 @@ namespace TrafficSimulator
         {
             DrawPlanet();
         }
-        
-        private Brush PickBrush()
-        {
-            Brush result = Brushes.Transparent;
 
-            Random rnd = new Random();
-
-            Type brushesType = typeof(Brushes);
-
-            PropertyInfo[] properties = brushesType.GetProperties();
-
-            int random = rnd.Next(properties.Length);
-            result = (Brush)properties[random].GetValue(null, null);
-
-            return result;
-        }
-        
-        int map(int x, int in_min, int in_max, int out_min, int out_max) {
-            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        private int map(int x, int inMin, int inMax, int outMin, int outMax) {
+            return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
         }
         
         private Brush PickBrush(int value)
@@ -99,6 +83,22 @@ namespace TrafficSimulator
                 for (int i = 0; i < nrCarsPerCell.Length; i++)
                     nrCarsPerCell[i] = 0;
 
+                RectangleF[] rects = new RectangleF[9];
+
+                int index = 0;
+                Brush b = Brushes.Black;
+                
+                for (int j = 1; j <= 5; j += 2)
+                {
+                    for (int i = 1; i <= 5; i += 2)
+                    {
+                        rects[index] = new Rectangle(20 + i * cellSize, 20 + j * cellSize, cellSize, cellSize); 
+                        index++;
+                    }
+                }
+                
+                g.FillRectangles(b, rects);
+
                 foreach (string v in _ownerAgent.TrafficLightPositions.Values)
                 {
                     string[] t = v.Split();
@@ -144,18 +144,19 @@ namespace TrafficSimulator
                     int y = Convert.ToInt32(t[1]);
                     string id = t[2];
                     int idInt = Convert.ToInt32(id);
-                    int nrExplorersCellCount = nrCarsPerCell[x * Utils.Size + y];
+                    int nrCarsCellCount = nrCarsPerCell[x * Utils.Size + y];
                     
-                    if (nrExplorersCellCount > 0 && nrExplorersCellCount < 9)
+                    if (nrCarsCellCount > 0 && nrCarsCellCount < 9)
                     {
-                        offsetX = (nrExplorersCellCount / 3) * (cellSize/3);
-                        offsetY = (nrExplorersCellCount % 3) * (cellSize/3);
+                        offsetX = (nrCarsCellCount / Utils.NoCarsPerCell) * (cellSize / Utils.NoCarsPerCell);
+                        offsetY = (nrCarsCellCount % Utils.NoCarsPerCell) * (cellSize / Utils.NoCarsPerCell);
                     }
                     
-                    Rectangle rect = new Rectangle(20 + x * cellSize + offsetX, 20 + y * cellSize + offsetY, cellSize/3, cellSize/3);
+                    Rectangle rect = new Rectangle(20 + x * cellSize + offsetX, 20 + y * cellSize + offsetY, 
+                        cellSize / Utils.NoCarsPerCell, cellSize / Utils.NoCarsPerCell);
 
                     g.FillRectangle(PickBrush(idInt), rect);
-                    g.DrawString(id, new Font("Arial", 13f), Brushes.White, rect);
+                    g.DrawString(id, new Font("Arial", 9f), Brushes.Black, rect);
 
                     nrCarsPerCell[x * Utils.Size + y]++;
                 }

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\alex_\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\alex_\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Reactive.1577031474.00" t="ExcludeRecursive" />
-    <e p="D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive" t="IncludeFlat">
+    <e p="C:\Users\alex_\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Reactive.-81355035.00" t="ExcludeRecursive" />
+    <e p="D:\University\Master\Year 2\MAS\Project\traffic_simulation" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="Reactive.sln" t="IncludeFlat" />
       <e p="TrafficSimulator" t="IncludeRecursive">

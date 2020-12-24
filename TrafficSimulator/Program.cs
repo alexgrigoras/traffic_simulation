@@ -6,7 +6,7 @@ namespace TrafficSimulator
     {
         private static void Main(string[] args)
         {
-            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 1000);
+            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 100);
 
             var planetAgent = new IntersectionAgent();
 
@@ -19,9 +19,9 @@ namespace TrafficSimulator
                 }
             }
             
-            for (int i = 1; i <= Utils.NoExplorers; i++)
+            for (int i = 0; i < Utils.NoExplorers; i++)
             {
-                var explorerAgent = new CarAgent(i-1, i);
+                var explorerAgent = new CarAgent(i, i+1);
                 env.Add(explorerAgent, "explorer" + i);
             }
             

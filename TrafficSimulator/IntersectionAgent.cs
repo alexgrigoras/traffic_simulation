@@ -71,14 +71,17 @@ namespace TrafficSimulator
                         break;
 
                     case "finish":
-                        //HandleUnload(message.Sender);
+                        RemoveCar(message.Sender);
                         break;
 
                     default:
                         break;
                 }
+                                            
                 _formGui.UpdatePlanetGUI();
             }
+            
+            //_formGui.UpdatePlanetGUI();
         }
 
         private void HandlePosition(string sender, string position)
@@ -98,6 +101,11 @@ namespace TrafficSimulator
             TrafficLightPositions[sender] = position; 
             Send(sender, "change");
         }
+        
+        private void RemoveCar(string sender)
+        {
+            CarPositions.Remove(sender);
+        }
 
         private void HandleChange(string sender, string position)
         {
@@ -110,15 +118,6 @@ namespace TrafficSimulator
                 if (CarPositions[k] == position)
                 {
                     Send(sender, "block");
-                    return;
-                }
-            }
-
-            foreach (string k in ResourcePositions.Keys)
-            {
-                if (position != _basePosition && ResourcePositions[k] == position)
-                {
-                    Send(sender, "rock " + k);
                     return;
                 }
             }
