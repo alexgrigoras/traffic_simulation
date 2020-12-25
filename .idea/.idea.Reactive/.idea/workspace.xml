@@ -4,15 +4,15 @@
     <projectFile>Reactive/Reactive.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="">
+    <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="Changed planet to intersection and window name">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reactive.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Reactive.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/Utils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" afterDir="false" />
     </list>
@@ -32,17 +32,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E9166BF-CA65-4377-B09C-EA42D003812D/fc/d62b3eca/Image.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/Utils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/220F2AAB-ED1D-4738-94A8-8B65AAF6C105/1e/8ee43d9c/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/220F2AAB-ED1D-4738-94A8-8B65AAF6C105/8c/f65b0927/Convert.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F556D682-2BBF-4841-96BE-2E4486C9052E/bb/4a436749/TurnBasedEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E9166BF-CA65-4377-B09C-EA42D003812D/fc/d62b3eca/Image.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/IntersectionForm.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/220F2AAB-ED1D-4738-94A8-8B65AAF6C105/8c/f65b0927/Convert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/IntersectionForm.Designer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F556D682-2BBF-4841-96BE-2E4486C9052E/8f/8fb2eead/TurnBasedEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/IntersectionAgent.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -55,13 +58,14 @@
       <option value="$PROJECT_DIR$/Reactive/Program.cs" />
       <option value="$PROJECT_DIR$/README.md" />
       <option value="$PROJECT_DIR$/TrafficSimulator/app.config.xml" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/App.config" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/Program.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/Utils.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.Designer.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/Utils.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/Program.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kk3x2hm8ATvjaalbJcy3C07XmY" />
@@ -115,8 +119,16 @@
       <workItem from="1608757071658" duration="3573000" />
       <workItem from="1608795982791" duration="6946000" />
       <workItem from="1608825234100" duration="17765000" />
-      <workItem from="1608920687236" duration="317000" />
+      <workItem from="1608920687236" duration="1818000" />
     </task>
+    <task id="LOCAL-00001" summary="Changed planet to intersection and window name">
+      <created>1608921229131</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608921229131</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,5 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Changed planet to intersection and window name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed planet to intersection and window name" />
   </component>
 </project>

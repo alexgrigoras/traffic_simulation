@@ -28,7 +28,7 @@ namespace TrafficSimulator
         public override void Setup()
         {
             Console.WriteLine("Starting {0} with state {1}", Name, _state);
-            Send("planet", Utils.Str("trafficLight", _x, _y, _state));
+            Send("intersection", Utils.Str("trafficLight", _x, _y, _state));
         }
 
         public override void Act(Queue<Message> messages)
@@ -49,11 +49,11 @@ namespace TrafficSimulator
                     {
                         SwitchState();
                         _currentNoTurns = 0;
-                        Send("planet", Utils.Str("changeLight", _x, _y, _state));
+                        Send("intersection", Utils.Str("changeLight", _x, _y, _state));
                     }
                     else
                     {
-                        Send("planet", Utils.Str("noChangeLight", _x, _y));
+                        Send("intersection", Utils.Str("noChangeLight", _x, _y));
                     }
                     _currentNoTurns++;
                 }
