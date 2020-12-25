@@ -102,6 +102,14 @@ namespace TrafficSimulator
         private void HandleTrafficLightPosition(string sender, string position)
         {
             TrafficLightPositions.Add(sender, position);
+            
+            string[] t = position.Split();
+            int x = Convert.ToInt32(t[0]);
+            int y = Convert.ToInt32(t[1]);
+            Utils.TrafficLightState state = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[2]);
+
+            _trafficLightStates[x, y] = state;
+            
             Send(sender, "change");
         }
         
@@ -145,62 +153,36 @@ namespace TrafficSimulator
             int newX = Convert.ToInt32(newT[0]);
             int newY = Convert.ToInt32(newT[1]);
 
-            // Traffic light is up
-            if (newY - oldY != 0)
-            {
-                if (_trafficLightStates[newX, newY] == Utils.TrafficLightState.Red)
-                {
-                    // Traffic light stop
-                    Send(sender, "block");
-                }
-                else
-                {
-                    if (NoCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
-                    {
-                        // Go to next position
-                        NoCarsPerCell[newX, newY]++;
-                        if (oldY != Utils.Size)
-                        {
-                            NoCarsPerCell[oldX, oldY]--;
-                        }
+            Utils.TrafficLightState lightForStop = Utils.TrafficLightState.Red;
 
-                        CarPositions[sender] = position;
-                        Send(sender, "move");
-                    }
-                    else
-                    {
-                        // Too many cars
-                        Send(sender, "block");
-                    }
-                }
+            if (newY - oldY != 0)               // Traffic light is up
+                lightForStop = Utils.TrafficLightState.Red;
+            else if (newX - oldX != 0)          // Traffic light is left or right
+                lightForStop = Utils.TrafficLightState.Green;
+
+            if (_trafficLightStates[newX, newY] == lightForStop)
+            {
+                // Traffic light stop
+                Send(sender, "block");
             }
-            // Traffic light is left or right
-            else if (newX - oldX != 0)
+            else
             {
-                if (_trafficLightStates[newX, newY] == Utils.TrafficLightState.Green)
+                if (NoCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
                 {
-                    // Traffic light stop
-                    Send(sender, "block");
+                    // Go to next position
+                    NoCarsPerCell[newX, newY]++;
+                    if (oldY != Utils.Size)
+                    {
+                        NoCarsPerCell[oldX, oldY]--;
+                    }
+
+                    CarPositions[sender] = position;
+                    Send(sender, "move");
                 }
                 else
                 {
-                    if (NoCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
-                    {
-                        // Go to next position
-                        NoCarsPerCell[newX, newY]++;
-                        if (oldY != Utils.Size)
-                        {
-                            NoCarsPerCell[oldX, oldY]--;
-                        }
-
-                        CarPositions[sender] = position;
-                        Send(sender, "move");
-                    }
-                    else
-                    {
-                        // Too many cars
-                        Send(sender, "block");
-                    }
+                    // Too many cars
+                    Send(sender, "block");
                 }
             }
         }
