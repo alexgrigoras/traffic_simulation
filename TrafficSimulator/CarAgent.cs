@@ -44,7 +44,7 @@ namespace TrafficSimulator
 
             Console.WriteLine("Starting " + Name + " - going to (" + _finalX + "," + _finalY + ")");
 
-            Send("planet", Utils.Str("position", _x, _y, _id));
+            Send("intersection", Utils.Str("position", _x, _y, _id));
         }
 
         private bool IsAtDestination()
@@ -69,19 +69,19 @@ namespace TrafficSimulator
                     if (action == "block")
                     {
                         Console.WriteLine("\t[{0}]: waits at RED", this.Name);
-                        Send("planet", Utils.Str("change", _x, _y, _id));
+                        Send("intersection", Utils.Str("change", _x, _y, _id));
                     }
                     else if (action == "move" && IsAtDestination())
                     {
                         //_state = State.Free;
                         Console.WriteLine("\t[{0}]: Arrived at destination", this.Name);
-                        Send("planet", Utils.Str("finish",  _x, _y, _id));
+                        Send("intersection", Utils.Str("finish",  _x, _y, _id));
                         this.Stop();
                     }
                     else if (action == "move")
                     {
                         MoveToDestination();
-                        Send("planet", Utils.Str("change", _x, _y, _id));
+                        Send("intersection", Utils.Str("change", _x, _y, _id));
                     }
                 }
             }
