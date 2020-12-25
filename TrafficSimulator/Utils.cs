@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace TrafficSimulator
 {
@@ -42,6 +43,24 @@ namespace TrafficSimulator
                 parameters += t[t.Length - 1];
             }
         }
+        
+        public static void ParseMessage(string str, out string action, out int[,] parameters)
+        {
+            string[] t = str.Split();
+            int index = 1;
+
+            action = t[0];
+            parameters = new int[Size, Size];
+
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    parameters[i, j] = Convert.ToInt32(t[index]);
+                    index++;
+                }
+            }
+        }
 
         public static string Str(object p1, object p2)
         {
@@ -62,18 +81,37 @@ namespace TrafficSimulator
         {
             return string.Format("{0} {1} {2} {3} {4} {5} {6}", p1, p2, p3, p4, p5, p6, p7);
         }
-        
-                
+
         public static void Print2DArray<T>(T[,] matrix)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    Console.Write(matrix[i,j] + "\t");
+                    Console.Write(matrix[i, j] + "\t");
                 }
+
                 Console.WriteLine();
             }
+        }
+
+        public static string CreateMessage(int[,] matrix, string message)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append(message);
+            sb.Append(" ");
+            
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    sb.Append(matrix[i, j]);
+                    sb.Append(" ");
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }

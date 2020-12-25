@@ -2,6 +2,8 @@
 using Message = ActressMas.Message;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -97,17 +99,6 @@ namespace TrafficSimulator
             }
         }
 
-        private void HandlePosition(string sender, string position)
-        {
-            CarPositions.Add(sender, position);
-            int leftCell = -1, upCell = 0, rightCell = -1;
-            Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Green, 
-                upCellLight = Utils.TrafficLightState.Green, 
-                rightCellLight = Utils.TrafficLightState.Green;
-            Send(sender, Utils.Str("move", leftCell, upCell, rightCell, 
-                leftCellLight, upCellLight, rightCellLight));
-        }
-        
         private void HandleTrafficLightPosition(string sender, string position)
         {
             TrafficLightPositions.Add(sender, position);
@@ -118,8 +109,10 @@ namespace TrafficSimulator
             Utils.TrafficLightState state = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[2]);
 
             _trafficLightStates[x, y] = state;
-            
-            Send(sender, "change");
+
+            string message = Utils.CreateMessage(NoCarsPerCell, "change");
+
+            Send(sender, message);
         }
         
         private void HandleChangeLight(string sender, string position)
@@ -133,12 +126,26 @@ namespace TrafficSimulator
 
             _trafficLightStates[x, y] = state;
             
-            Send(sender, "change");
+            string message = Utils.CreateMessage(NoCarsPerCell, "change");
+            
+            Send(sender, message);
         }
         
         private void HandleNoChangeLight(string sender, string position)
         {
-            Send(sender, "change");
+            string message = Utils.CreateMessage(NoCarsPerCell, "change");
+            Send(sender, message);
+        }
+
+        private void HandlePosition(string sender, string position)
+        {
+            CarPositions.Add(sender, position);
+            int leftCell = -1, upCell = 0, rightCell = -1;
+            Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Green, 
+                upCellLight = Utils.TrafficLightState.Green, 
+                rightCellLight = Utils.TrafficLightState.Green;
+            Send(sender, Utils.Str("move", leftCell, upCell, rightCell, 
+                leftCellLight, upCellLight, rightCellLight));
         }
         
         private void RemoveCar(string sender, string position)

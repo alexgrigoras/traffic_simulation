@@ -40,7 +40,7 @@ namespace TrafficSimulator
                 Console.WriteLine("\t[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
 
                 string action;
-                List<string> parameters;
+                int[,] parameters;
                 Utils.ParseMessage(message.Content, out action, out parameters);
                 
                 if (action == "change")
