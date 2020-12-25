@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -43,17 +43,16 @@
             this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
             this.pictureBox.Resize += new System.EventHandler(this.pictureBox_Resize);
             // 
-            // PlanetForm
+            // IntersectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(595, 591);
             this.Controls.Add(this.pictureBox);
             this.Name = "IntersectionForm";
-            this.Text = "Planet";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.Text = "Traffic Simulator";
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

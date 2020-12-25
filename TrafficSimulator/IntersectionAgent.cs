@@ -89,7 +89,7 @@ namespace TrafficSimulator
                         break;
                 }
                 
-                _formGui.UpdatePlanetGUI();
+                _formGui.UpdateIntersectionGUI();
             }
         }
 

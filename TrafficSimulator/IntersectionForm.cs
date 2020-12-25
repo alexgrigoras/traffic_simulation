@@ -22,17 +22,17 @@ namespace TrafficSimulator
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            DrawPlanet();
+            DrawIntersection();
         }
 
-        public void UpdatePlanetGUI()
+        public void UpdateIntersectionGUI()
         {
-            DrawPlanet();
+            DrawIntersection();
         }
 
         private void pictureBox_Resize(object sender, EventArgs e)
         {
-            DrawPlanet();
+            DrawIntersection();
         }
 
         private int map(int x, int inMin, int inMax, int outMin, int outMax) {
@@ -51,7 +51,7 @@ namespace TrafficSimulator
             return result;
         }
 
-        private void DrawPlanet()
+        private void DrawIntersection()
         {
             int w = pictureBox.Width;
             int h = pictureBox.Height;
