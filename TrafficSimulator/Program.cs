@@ -33,7 +33,7 @@ namespace TrafficSimulator
 
             // Build environment
             TurnBasedEnvironment env = new TurnBasedEnvironment(0, 100);
-            var planetAgent = new IntersectionAgent();
+            var intersectionAgent = new IntersectionAgent();
         
             // Traffic lights
             Utils.TrafficLightState initialState = Utils.TrafficLightState.Green;
@@ -71,7 +71,7 @@ namespace TrafficSimulator
                     }
                 }
             }
-            env.Add(planetAgent, "planet");
+            env.Add(intersectionAgent, "intersection");
         
             // Start Environment
             env.Start();
