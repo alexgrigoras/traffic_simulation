@@ -12,7 +12,7 @@ namespace TrafficSimulator
         public static int NoStartingPoints = (Size+1) / 2;
         public static int LightSwitchingTime = 10;
         public enum TrafficLightState { Green, Red, Unavailable };
-        public enum CarPriorityState { GreenLight, LowerTraffic };
+        public enum CarPriorityState { NoPriority, GreenLight, LowerTraffic };
         public enum TrafficLightIntelligenceState { L0, L1, L2, L3 };
         public static Random RandNoGen = new Random();
 
@@ -56,6 +56,11 @@ namespace TrafficSimulator
         public static string Str(object p1, object p2, object p3, object p4)
         {
             return string.Format("{0} {1} {2} {3}", p1, p2, p3, p4);
+        }
+        
+        public static string Str(object p1, object p2, object p3, object p4, object p5, object p6, object p7)
+        {
+            return string.Format("{0} {1} {2} {3} {4} {5} {6}", p1, p2, p3, p4, p5, p6, p7);
         }
         
                 

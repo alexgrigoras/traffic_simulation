@@ -47,6 +47,10 @@ namespace TrafficSimulator
             {
                 for (int j = 0; j < Utils.Size; j++)
                 {
+                    if (i % 2 != 0 && j % 2 != 0)
+                    {
+                        NoCarsPerCell[i, j] = -1;
+                    }
                     _trafficLightStates[i, j] = Utils.TrafficLightState.Unavailable;
                 }
             }
@@ -96,7 +100,12 @@ namespace TrafficSimulator
         private void HandlePosition(string sender, string position)
         {
             CarPositions.Add(sender, position);
-            Send(sender, "move");
+            int leftCell = -1, upCell = 0, rightCell = -1;
+            Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Green, 
+                upCellLight = Utils.TrafficLightState.Green, 
+                rightCellLight = Utils.TrafficLightState.Green;
+            Send(sender, Utils.Str("move", leftCell, upCell, rightCell, 
+                leftCellLight, upCellLight, rightCellLight));
         }
         
         private void HandleTrafficLightPosition(string sender, string position)
@@ -174,8 +183,28 @@ namespace TrafficSimulator
                     NoCarsPerCell[oldX, oldY]--;
                 }
 
+                int leftCell = -1, upCell = -1, rightCell = -1;
+                Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Unavailable, 
+                    upCellLight = Utils.TrafficLightState.Unavailable, 
+                    rightCellLight = Utils.TrafficLightState.Unavailable;
+                if (newX - 2 > 0 && NoCarsPerCell[newX - 1, newY] != -1)
+                {
+                    leftCell = NoCarsPerCell[newX - 1, newY];
+                    leftCellLight = _trafficLightStates[newX - 2, newY];
+                }
+                if (newY - 2 > 0 && NoCarsPerCell[newX, newY - 1] != -1)
+                {
+                    upCell = NoCarsPerCell[newX, newY - 1];
+                    upCellLight = _trafficLightStates[newX, newY - 2];
+                }
+                if (newX + 2 < Utils.Size && NoCarsPerCell[newX + 1, newY] != -1)
+                {
+                    rightCell = NoCarsPerCell[newX + 1, newY];
+                    rightCellLight = _trafficLightStates[newX + 2, newY];
+                }
+
                 CarPositions[sender] = position;
-                Send(sender, "move");
+                Send(sender, Utils.Str("move", leftCell, upCell, rightCell, leftCellLight, upCellLight, rightCellLight));
             }
             else
             {

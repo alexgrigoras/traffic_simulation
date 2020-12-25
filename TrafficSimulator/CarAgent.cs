@@ -63,7 +63,7 @@ namespace TrafficSimulator
                     Console.WriteLine("\t[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
 
                     string action;
-                    List<string> parameters;
+                    string parameters;
                     Utils.ParseMessage(message.Content, out action, out parameters);
 
                     if (action == "block")
@@ -80,7 +80,7 @@ namespace TrafficSimulator
                     }
                     else if (action == "move")
                     {
-                        MoveToDestination();
+                        MoveToDestination(parameters);
                         Send("intersection", Utils.Str("change", _x, _y, _id));
                     }
                 }
@@ -88,46 +88,70 @@ namespace TrafficSimulator
             _turns++;
         }
 
-        private void MoveToDestination()
+        private void MoveToDestination(string position)
         {
-            int dx = _x - _finalX;
-            int dy = _y - _finalY;
-            int newX = _x, newY = _y;
+            // Get number of cars from the possible next cells
+            string[] t = position.Split();
+            int leftCellNoCars = Convert.ToInt32(t[0]);
+            int upCellNoCars = Convert.ToInt32(t[1]);
+            int rightCellNoCars = Convert.ToInt32(t[2]);
+            Utils.TrafficLightState leftCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[3]);
+            Utils.TrafficLightState upCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[4]);
+            Utils.TrafficLightState rightCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[5]);
 
-            if (Math.Abs(dx) > Math.Abs(dy))
-                newX -= Math.Sign(dx);
-            else
-                newY -= Math.Sign(dy);
-
-            if (_unavailableCells[newX, newY])
+            if (_carPriority == Utils.CarPriorityState.NoPriority)
             {
-                if (newX == _x)
+                // Select next cell
+                int dx = _x - _finalX;
+                int dy = _y - _finalY;
+                int newX = _x, newY = _y;
+
+                if (Math.Abs(dx) > Math.Abs(dy))
+                    newX -= Math.Sign(dx);
+                else
+                    newY -= Math.Sign(dy);
+
+                if (_unavailableCells[newX, newY])
                 {
-                    // unavailable cell is up => goes left or right
-                    if (dx != 0)
+                    if (newX == _x)
                     {
-                        if (_x - Math.Sign(dx) >= 0 && _x - Math.Sign(dx) < Utils.Size)
+                        // unavailable cell is up => goes left or right
+                        if (dx != 0)
                         {
-                            _x -= Math.Sign(dx);
+                            if (_x - Math.Sign(dx) >= 0 && _x - Math.Sign(dx) < Utils.Size)
+                            {
+                                _x -= Math.Sign(dx);
+                            }
+                        }
+                        else
+                        {
+                            if (_x - 1 >= 0) _x -= 1;
+                            else if (_x + 1 < Utils.Size) _x += 1;
                         }
                     }
-                    else
+                    else if (newY == _y)
                     {
-                        if (_x - 1 >= 0) _x -= 1;
-                        else if (_x + 1 < Utils.Size) _x += 1;
+                        // unavailable cell is right or left => goes up
+                        if (_y - 1 >= 0)
+                            _y -= 1;
                     }
                 }
-                else if (newY == _y)
+                else
                 {
-                    // unavailable cell is right or left => goes up
-                    if (_y - 1 >= 0)
-                        _y -= 1;         
+                    _x = newX;
+                    _y = newY;
                 }
             }
-            else
+            
+            // !! TO Add - select the next cell accordingly to the car priority
+            
+            else if (_carPriority == Utils.CarPriorityState.GreenLight)
             {
-                _x = newX;
-                _y = newY;
+                //
+            }
+            else if (_carPriority == Utils.CarPriorityState.LowerTraffic)
+            {
+                //
             }
         }
     }
