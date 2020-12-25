@@ -165,25 +165,22 @@ namespace TrafficSimulator
                 // Traffic light stop
                 Send(sender, "block");
             }
+            else if (NoCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
+            {
+                // Go to next position
+                NoCarsPerCell[newX, newY]++;
+                if (oldY != Utils.Size)
+                {
+                    NoCarsPerCell[oldX, oldY]--;
+                }
+
+                CarPositions[sender] = position;
+                Send(sender, "move");
+            }
             else
             {
-                if (NoCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
-                {
-                    // Go to next position
-                    NoCarsPerCell[newX, newY]++;
-                    if (oldY != Utils.Size)
-                    {
-                        NoCarsPerCell[oldX, oldY]--;
-                    }
-
-                    CarPositions[sender] = position;
-                    Send(sender, "move");
-                }
-                else
-                {
-                    // Too many cars
-                    Send(sender, "block");
-                }
+                // Too many cars
+                Send(sender, "block");
             }
         }
     }
