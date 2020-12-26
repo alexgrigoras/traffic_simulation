@@ -12,7 +12,7 @@ namespace TrafficSimulator
         public const int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
         public const int NoStartingPoints = (Size + 1) / 2;
         public const int LightSwitchingTime = 10;           // number of turns to change light
-        public static TrafficLightIntelligenceState IntelligenceState = TrafficLightIntelligenceState.L0;
+        private static TrafficLightIntelligenceState _intelligenceState = TrafficLightIntelligenceState.L0;
 
         public enum TrafficLightState { Green, Red, Unavailable };
         public enum CarPriorityState { NoPriority, GreenLight, LowerTraffic };
@@ -21,7 +21,7 @@ namespace TrafficSimulator
 
         public static void SetTrafficLightIntelligence(Utils.TrafficLightIntelligenceState state)
         {
-            IntelligenceState = state;
+            _intelligenceState = state;
         }
         
         public static void ParseMessage(string content, out string action, out List<string> parameters)
@@ -59,7 +59,7 @@ namespace TrafficSimulator
             action = t[0];
             parameters = new int[Size, Size];
 
-            switch (IntelligenceState)
+            switch (_intelligenceState)
             {
                 case TrafficLightIntelligenceState.L0:
                     break;
@@ -137,7 +137,7 @@ namespace TrafficSimulator
             sb.Append(message);
             sb.Append(" ");
             
-            switch (IntelligenceState)
+            switch (_intelligenceState)
             {
                 case TrafficLightIntelligenceState.L0:
                     break;

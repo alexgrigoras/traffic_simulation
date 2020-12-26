@@ -65,6 +65,6 @@ namespace TrafficSimulator
                 _state = Utils.TrafficLightState.Green;
         }
 
-        private void ParseState(int[,] positions) {}
+        private void ParseState(int[,] values) {}
     }
 }
