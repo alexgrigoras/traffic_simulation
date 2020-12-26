@@ -37,16 +37,17 @@ namespace TrafficSimulator
             var intersectionAgent = new IntersectionAgent();
         
             // Traffic lights
+            int index = 0;
             Utils.TrafficLightState initialState = Utils.TrafficLightState.Green;
             for (int j = 2; j < Utils.Size - 1; j += 2)
             {
                 for (int i = 0; i < Utils.Size; i += 2)
                 {
-                    int index = i * 2 + j;
-
                     var trafficLightAgent = new TrafficLightAgent(index, i, j, Utils.LightSwitchingTime, 
                         initialState);
                     env.Add(trafficLightAgent, "trafficLight" + index);
+
+                    index++;
                     
                     // Change state
                     if (initialState == Utils.TrafficLightState.Green)

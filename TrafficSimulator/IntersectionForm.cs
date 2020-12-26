@@ -77,14 +77,14 @@ namespace TrafficSimulator
                 for (int i = 0; i < nrCarsPerCell.Length; i++)
                     nrCarsPerCell[i] = 0;
 
-                RectangleF[] rects = new RectangleF[9];
+                RectangleF[] rects = new RectangleF[(Utils.Size / 2) * (Utils.Size / 2)];
 
                 int index = 0;
                 Brush b = Brushes.Black;
                 
-                for (int j = 1; j <= 5; j += 2)
+                for (int j = 1; j <= Utils.Size - 2; j += 2)
                 {
-                    for (int i = 1; i <= 5; i += 2)
+                    for (int i = 1; i <= Utils.Size - 2; i += 2)
                     {
                         rects[index] = new Rectangle(20 + i * cellSize, 20 + j * cellSize, cellSize, cellSize); 
                         index++;
@@ -146,7 +146,7 @@ namespace TrafficSimulator
                     int idInt = Convert.ToInt32(id);
                     int nrCarsCellCount = nrCarsPerCell[x * Utils.Size + y];
 
-                    if (nrCarsCellCount > 0 && nrCarsCellCount < 9)
+                    if (nrCarsCellCount > 0 && nrCarsCellCount < Utils.MaxNoCarsPerCell)
                     {
                         offsetX = (nrCarsCellCount / Utils.NoCarsPerCell) * (cellSize / Utils.NoCarsPerCell);
                         offsetY = (nrCarsCellCount % Utils.NoCarsPerCell) * (cellSize / Utils.NoCarsPerCell);
