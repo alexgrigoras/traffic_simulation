@@ -14,6 +14,7 @@ namespace TrafficSimulator
                 new ArgumentNullException("ConfigurationManager.AppSettings.Get(\"TrafficLightIntelligence\")");
             Utils.TrafficLightIntelligenceState trafficLightIntelligence = 
                 (Utils.TrafficLightIntelligenceState) Enum.Parse(typeof(Utils.TrafficLightIntelligenceState), sAttr);
+            Utils.SetTrafficLightIntelligence(trafficLightIntelligence);
 
             // Cars Rate
             string[] carsRateName = {"CarsRateA", "CarsRateB", "CarsRateC", "CarsRateD"};
@@ -44,7 +45,7 @@ namespace TrafficSimulator
                     int index = i * 2 + j;
 
                     var trafficLightAgent = new TrafficLightAgent(index, i, j, Utils.LightSwitchingTime, 
-                        initialState, trafficLightIntelligence);
+                        initialState);
                     env.Add(trafficLightAgent, "trafficLight" + index);
                     
                     // Change state

@@ -75,7 +75,7 @@ namespace TrafficSimulator
                         break;
                     
                     case "noChangeLight":
-                        HandleNoChangeLight(message.Sender);
+                        HandleNoChangeLight(message.Sender, parameters);
                         break;
 
                     case "change":
@@ -102,9 +102,9 @@ namespace TrafficSimulator
 
             _trafficLightStates[x, y] = state;
 
-            string message = Utils.BuildMessage(_noCarsPerCell, "change");
+            string content = Utils.BuildMessage(_noCarsPerCell, "change", x, y);
 
-            Send(sender, message);
+            Send(sender, content);
         }
         
         private void HandleChangeLight(string sender, List<string> position)
@@ -118,16 +118,19 @@ namespace TrafficSimulator
 
             _trafficLightStates[x, y] = state;
             
-            string message = Utils.BuildMessage(_noCarsPerCell, "change");
+            string content = Utils.BuildMessage(_noCarsPerCell, "change", x, y);
             
-            Send(sender, message);
+            Send(sender, content);
         }
         
-        private void HandleNoChangeLight(string sender)
+        private void HandleNoChangeLight(string sender, List<string> position)
         {
-            string message = Utils.BuildMessage(_noCarsPerCell, "change");
+            int x = Convert.ToInt32(position[0]);
+            int y = Convert.ToInt32(position[1]);
             
-            Send(sender, message);
+            string content = Utils.BuildMessage(_noCarsPerCell, "change", x, y);
+            
+            Send(sender, content);
         }
 
         private void HandlePosition(string sender, List<string> position)

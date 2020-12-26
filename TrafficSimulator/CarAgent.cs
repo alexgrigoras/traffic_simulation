@@ -28,7 +28,7 @@ namespace TrafficSimulator
         {
             _x = _startPos;
             _y = Utils.Size;
-            _finalX = Utils.RandNoGen.Next(Utils.Size);
+            _finalX = Utils.RandNoGen.Next(Utils.Size/2) * 2;
             _finalY = 0;
             _unavailableCells = new bool[Utils.Size,Utils.Size];
             

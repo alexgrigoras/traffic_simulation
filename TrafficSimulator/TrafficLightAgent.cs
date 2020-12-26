@@ -1,7 +1,6 @@
 ﻿using ActressMas;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace TrafficSimulator
 {
@@ -10,18 +9,15 @@ namespace TrafficSimulator
         private int _id;
         private readonly int _x, _y;
         private Utils.TrafficLightState _state;
-        private Utils.TrafficLightIntelligenceState _intelligenceState;
         private readonly int _noTurns;
         private int _currentNoTurns;
 
-        public TrafficLightAgent(int id, int posX, int posY, int noTurns, Utils.TrafficLightState initialState, 
-            Utils.TrafficLightIntelligenceState intelligenceState)
+        public TrafficLightAgent(int id, int posX, int posY, int noTurns, Utils.TrafficLightState initialState)
         {
             _id = id;
             _x = posX;
             _y = posY;
             _noTurns = noTurns;
-            _intelligenceState = intelligenceState;
             _state = initialState;
         }
 
@@ -39,7 +35,7 @@ namespace TrafficSimulator
 
                 Console.WriteLine(@"	[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
 
-                Utils.ParseMessage(message.Content, out var action, out int[,] parameters);
+                Utils.ParseMessage(message.Content, _x, _y, out var action, out int[,] parameters);
 
                 if (action == "change")
                 {

@@ -7,17 +7,23 @@ namespace TrafficSimulator
     public static class Utils
     {
         public const int Size = 7;
-        public const int NoCars = 50;
+        public const int NoCars = 100;
         public const int NoCarsPerCell = 3;                 // grid with NoCarsPerCell*NoCarsPerCell cars
         public const int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
         public const int NoStartingPoints = (Size + 1) / 2;
         public const int LightSwitchingTime = 10;           // number of turns to change light
+        public static TrafficLightIntelligenceState IntelligenceState = TrafficLightIntelligenceState.L0;
 
         public enum TrafficLightState { Green, Red, Unavailable };
         public enum CarPriorityState { NoPriority, GreenLight, LowerTraffic };
         public enum TrafficLightIntelligenceState { L0, L1, L2, L3 };
         public static Random RandNoGen = new Random();
 
+        public static void SetTrafficLightIntelligence(Utils.TrafficLightIntelligenceState state)
+        {
+            IntelligenceState = state;
+        }
+        
         public static void ParseMessage(string content, out string action, out List<string> parameters)
         {
             string[] t = content.Split();
@@ -45,7 +51,7 @@ namespace TrafficSimulator
             }
         }
         
-        public static void ParseMessage(string str, out string action, out int[,] parameters)
+        public static void ParseMessage(string str, int x, int y, out string action, out int[,] parameters)
         {
             string[] t = str.Split();
             int index = 1;
@@ -53,13 +59,54 @@ namespace TrafficSimulator
             action = t[0];
             parameters = new int[Size, Size];
 
-            for (int i = 0; i < Size; i++)
+            switch (IntelligenceState)
             {
-                for (int j = 0; j < Size; j++)
-                {
-                    parameters[i, j] = Convert.ToInt32(t[index]);
-                    index++;
-                }
+                case TrafficLightIntelligenceState.L0:
+                    break;
+                case TrafficLightIntelligenceState.L1:
+                    for (int i = 0; i < Size; i++)
+                    {
+                        for (int j = 0; j < Size; j++)
+                        {
+                            if (i >= x - 1 && i <= x + 1 && j >= y - 1 && j <= y + 1)
+                            {
+                                parameters[i, j] = Convert.ToInt32(t[index]);
+                                index++;
+                            }
+                            else
+                            {
+                                parameters[i, j] = -1;
+                            }
+                        }
+                    }
+                    break;
+                case TrafficLightIntelligenceState.L2:
+                    for (int i = 0; i < Size; i++)
+                    {
+                        for (int j = 0; j < Size; j++)
+                        {
+                            if (i >= x - 2 && i <= x + 2 && j >= y - 2 && j <= y + 2)
+                            {
+                                parameters[i, j] = Convert.ToInt32(t[index]);
+                                index++;
+                            }
+                            else
+                            {
+                                parameters[i, j] = -1;
+                            }
+                        }
+                    }
+                    break;
+                case TrafficLightIntelligenceState.L3:
+                    for (int i = 0; i < Size; i++)
+                    {
+                        for (int j = 0; j < Size; j++)
+                        {
+                            parameters[i, j] = Convert.ToInt32(t[index]);
+                            index++;
+                        }
+                    }
+                    break;
             }
         }
 
@@ -83,21 +130,54 @@ namespace TrafficSimulator
             return $"{p1} {p2} {p3} {p4} {p5} {p6} {p7}";
         }
         
-        public static string BuildMessage(int[,] matrix, string message)
+        public static string BuildMessage(int[,] matrix, string message, int x, int y)
         {
             var sb = new StringBuilder();
 
             sb.Append(message);
             sb.Append(" ");
             
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            switch (IntelligenceState)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    sb.Append(matrix[i, j]);
-                    sb.Append(" ");
-                }
+                case TrafficLightIntelligenceState.L0:
+                    break;
+                case TrafficLightIntelligenceState.L1:
+                    for (int i = x - 1; i <= x + 1; i++)
+                    {
+                        for (int j = y - 1; j <= y + 1; j++)
+                        {
+                            if (i >= 0 && i < Size && j >= 0 && j < Size)
+                                sb.Append(matrix[i, j]);
+                            else sb.Append(-1);
+                            sb.Append(" ");
+                        }
+                    }
+                    break;
+                case TrafficLightIntelligenceState.L2:
+                    for (int i = x - 2; i <= x + 2; i++)
+                    {
+                        for (int j = y - 2; j <= y + 2; j++)
+                        {
+                            if (i >= 0 && i < Size && j >= 0 && j < Size)
+                                sb.Append(matrix[i, j]);
+                            else sb.Append(-1);
+                            sb.Append(" ");
+                        }
+                    }
+                    break;
+                case TrafficLightIntelligenceState.L3:
+                    for (int i = 0; i < matrix.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < matrix.GetLength(1); j++)
+                        {
+                            sb.Append(matrix[i, j]);
+                            sb.Append(" ");
+                        }
+                    }
+                    break;
             }
+            
+            //Console.WriteLine(sb.ToString());
 
             return sb.ToString();
         }
