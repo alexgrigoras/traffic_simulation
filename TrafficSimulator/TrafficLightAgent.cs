@@ -8,10 +8,10 @@ namespace TrafficSimulator
     public class TrafficLightAgent : TurnBasedAgent
     {
         private int _id;
-        private int _x, _y;
+        private readonly int _x, _y;
         private Utils.TrafficLightState _state;
         private Utils.TrafficLightIntelligenceState _intelligenceState;
-        private int _noTurns;
+        private readonly int _noTurns;
         private int _currentNoTurns;
 
         public TrafficLightAgent(int id, int posX, int posY, int noTurns, Utils.TrafficLightState initialState, 
@@ -27,7 +27,7 @@ namespace TrafficSimulator
 
         public override void Setup()
         {
-            Console.WriteLine("Starting {0} with state {1}", Name, _state);
+            Console.WriteLine(@"Starting {0} with state {1}", Name, _state);
             Send("intersection", Utils.Str("trafficLight", _x, _y, _state));
         }
 
@@ -37,14 +37,14 @@ namespace TrafficSimulator
             {
                 Message message = messages.Dequeue();
 
-                Console.WriteLine("\t[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
+                Console.WriteLine(@"	[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
 
-                string action;
-                int[,] parameters;
-                Utils.ParseMessage(message.Content, out action, out parameters);
-                
+                Utils.ParseMessage(message.Content, out var action, out int[,] parameters);
+
                 if (action == "change")
                 {
+                    ParseState(parameters);
+                    
                     if (_currentNoTurns == _noTurns)
                     {
                         SwitchState();
@@ -55,6 +55,7 @@ namespace TrafficSimulator
                     {
                         Send("intersection", Utils.Str("noChangeLight", _x, _y));
                     }
+                    
                     _currentNoTurns++;
                 }
             }
@@ -67,5 +68,7 @@ namespace TrafficSimulator
             else
                 _state = Utils.TrafficLightState.Green;
         }
+
+        private void ParseState(int[,] positions) {}
     }
 }

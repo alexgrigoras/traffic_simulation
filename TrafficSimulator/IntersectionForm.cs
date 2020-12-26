@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -34,21 +35,14 @@ namespace TrafficSimulator
         {
             DrawIntersection();
         }
-
-        private int map(int x, int inMin, int inMax, int outMin, int outMax) {
-            return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-        }
         
         private Brush PickBrush(int value)
         {
-            Brush result = Brushes.Transparent;
             Type brushesType = typeof(Brushes);
             PropertyInfo[] properties = brushesType.GetProperties();
-            int selectedValue = map(value, 0, Utils.NoCars - 1, 0, properties.Length-1);
+            int selectedValue = Utils.Map(value, 0, Utils.NoCars - 1, 0, properties.Length-1);
             
-            result = (Brush)properties[selectedValue].GetValue(null, null);
-
-            return result;
+            return (Brush)properties[selectedValue].GetValue(null, null);
         }
 
         private void DrawIntersection()
@@ -99,9 +93,8 @@ namespace TrafficSimulator
                 
                 g.FillRectangles(b, rects);
 
-                foreach (string v in _ownerAgent.TrafficLightPositions.Values)
+                foreach (List<string> t in _ownerAgent.TrafficLightPositions.Values)
                 {
-                    string[] t = v.Split();
                     int x = Convert.ToInt32(t[0]);
                     int y = Convert.ToInt32(t[1]);
                     string st = t[2];
@@ -145,9 +138,8 @@ namespace TrafficSimulator
                 
                 g.FillRectangles(Brushes.LightSteelBlue, startingPointRects);
 
-                foreach (string v in _ownerAgent.CarPositions.Values)
+                foreach (List<string> t in _ownerAgent.CarPositions.Values)
                 {
-                    string[] t = v.Split();
                     int x = Convert.ToInt32(t[0]);
                     int y = Convert.ToInt32(t[1]);
                     string id = t[2];

@@ -6,12 +6,13 @@ namespace TrafficSimulator
 {
     public static class Utils
     {
-        public static int Size = 7;
-        public static int NoCars = 100;
-        public static int NoCarsPerCell = 3;        // grid with NoCarsPerCell*NoCarsPerCell cars
-        public static int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
-        public static int NoStartingPoints = (Size+1) / 2;
-        public static int LightSwitchingTime = 10;
+        public const int Size = 7;
+        public const int NoCars = 100;
+        public const int NoCarsPerCell = 3;                 // grid with NoCarsPerCell*NoCarsPerCell cars
+        public const int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
+        public const int NoStartingPoints = (Size + 1) / 2;
+        public const int LightSwitchingTime = 10;           // number of turns to change light
+
         public enum TrafficLightState { Green, Red, Unavailable };
         public enum CarPriorityState { NoPriority, GreenLight, LowerTraffic };
         public enum TrafficLightIntelligenceState { L0, L1, L2, L3 };
@@ -27,7 +28,7 @@ namespace TrafficSimulator
             for (int i = 1; i < t.Length; i++)
                 parameters.Add(t[i]);
         }
-
+        
         public static void ParseMessage(string content, out string action, out string parameters)
         {
             string[] t = content.Split();
@@ -64,38 +65,25 @@ namespace TrafficSimulator
 
         public static string Str(object p1, object p2)
         {
-            return string.Format("{0} {1}", p1, p2);
+            return $"{p1} {p2}";
         }
 
         public static string Str(object p1, object p2, object p3)
         {
-            return string.Format("{0} {1} {2}", p1, p2, p3);
+            return $"{p1} {p2} {p3}";
         }
         
         public static string Str(object p1, object p2, object p3, object p4)
         {
-            return string.Format("{0} {1} {2} {3}", p1, p2, p3, p4);
+            return $"{p1} {p2} {p3} {p4}";
         }
         
         public static string Str(object p1, object p2, object p3, object p4, object p5, object p6, object p7)
         {
-            return string.Format("{0} {1} {2} {3} {4} {5} {6}", p1, p2, p3, p4, p5, p6, p7);
+            return $"{p1} {p2} {p3} {p4} {p5} {p6} {p7}";
         }
-
-        public static void Print2DArray<T>(T[,] matrix)
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    Console.Write(matrix[i, j] + "\t");
-                }
-
-                Console.WriteLine();
-            }
-        }
-
-        public static string CreateMessage(int[,] matrix, string message)
+        
+        public static string BuildMessage(int[,] matrix, string message)
         {
             var sb = new StringBuilder();
 
@@ -112,6 +100,22 @@ namespace TrafficSimulator
             }
 
             return sb.ToString();
+        }
+
+        public static int Map(int x, int inMin, int inMax, int outMin, int outMax) {
+            return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+        }
+        
+        public static void Print2DArray<T>(T[,] matrix)
+        {
+            for (var i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + @"	");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

@@ -2,8 +2,6 @@
 using Message = ActressMas.Message;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -12,17 +10,15 @@ namespace TrafficSimulator
     public class IntersectionAgent : TurnBasedAgent
     {
         private IntersectionForm _formGui;
-        public Dictionary<string, string> CarPositions { get; set; }
-        public Dictionary<string, string> TrafficLightPositions { get; set; }
-
+        public Dictionary<string, List<string>> CarPositions { get; }
+        public Dictionary<string, List<string>> TrafficLightPositions { get; }
         private Utils.TrafficLightState[,] _trafficLightStates;
-
-        public int[,] NoCarsPerCell;
+        private int[,] _noCarsPerCell;
         
         public IntersectionAgent()
         {
-            CarPositions = new Dictionary<string, string>();
-            TrafficLightPositions = new Dictionary<string, string>();
+            CarPositions = new Dictionary<string, List<string>>();
+            TrafficLightPositions = new Dictionary<string, List<string>>();
 
             Thread t = new Thread(new ThreadStart(GUIThread));
             t.Start();
@@ -38,11 +34,10 @@ namespace TrafficSimulator
 
         public override void Setup()
         {
-            Console.WriteLine("Starting " + Name);
+            Console.WriteLine(@"Starting {0}", Name);
             Thread.Sleep(1000);
 
-            NoCarsPerCell = new int[Utils.Size, Utils.Size];
-            
+            _noCarsPerCell = new int[Utils.Size, Utils.Size];
             _trafficLightStates = new Utils.TrafficLightState[Utils.Size,Utils.Size];
 
             for (int i = 0; i < Utils.Size; i++)
@@ -50,9 +45,7 @@ namespace TrafficSimulator
                 for (int j = 0; j < Utils.Size; j++)
                 {
                     if (i % 2 != 0 && j % 2 != 0)
-                    {
-                        NoCarsPerCell[i, j] = -1;
-                    }
+                        _noCarsPerCell[i, j] = -1;
                     _trafficLightStates[i, j] = Utils.TrafficLightState.Unavailable;
                 }
             }
@@ -62,11 +55,10 @@ namespace TrafficSimulator
         {
             while(messages.Count > 0)
             {
-                Message message = messages.Dequeue();
-                Console.WriteLine("\t[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
+                var message = messages.Dequeue();
+                Console.WriteLine(@"	[{1} -> {0}]: {2}", this.Name, message.Sender, message.Content);
 
-                string action; string parameters;
-                Utils.ParseMessage(message.Content, out action, out parameters);
+                Utils.ParseMessage(message.Content, out var action, out List<string> parameters);
 
                 switch (action)
                 {
@@ -83,7 +75,7 @@ namespace TrafficSimulator
                         break;
                     
                     case "noChangeLight":
-                        HandleNoChangeLight(message.Sender, parameters);
+                        HandleNoChangeLight(message.Sender);
                         break;
 
                     case "change":
@@ -99,75 +91,76 @@ namespace TrafficSimulator
             }
         }
 
-        private void HandleTrafficLightPosition(string sender, string position)
+        private void HandleTrafficLightPosition(string sender, List<string> position)
         {
             TrafficLightPositions.Add(sender, position);
             
-            string[] t = position.Split();
-            int x = Convert.ToInt32(t[0]);
-            int y = Convert.ToInt32(t[1]);
-            Utils.TrafficLightState state = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[2]);
+            int x = Convert.ToInt32(position[0]);
+            int y = Convert.ToInt32(position[1]);
+            Utils.TrafficLightState state = 
+                (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), position[2]);
 
             _trafficLightStates[x, y] = state;
 
-            string message = Utils.CreateMessage(NoCarsPerCell, "change");
+            string message = Utils.BuildMessage(_noCarsPerCell, "change");
 
             Send(sender, message);
         }
         
-        private void HandleChangeLight(string sender, string position)
+        private void HandleChangeLight(string sender, List<string> position)
         {
             TrafficLightPositions[sender] = position;
-            
-            string[] t = position.Split();
-            int x = Convert.ToInt32(t[0]);
-            int y = Convert.ToInt32(t[1]);
-            Utils.TrafficLightState state = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[2]);
+
+            int x = Convert.ToInt32(position[0]);
+            int y = Convert.ToInt32(position[1]);
+            Utils.TrafficLightState state = 
+                (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), position[2]);
 
             _trafficLightStates[x, y] = state;
             
-            string message = Utils.CreateMessage(NoCarsPerCell, "change");
+            string message = Utils.BuildMessage(_noCarsPerCell, "change");
             
             Send(sender, message);
         }
         
-        private void HandleNoChangeLight(string sender, string position)
+        private void HandleNoChangeLight(string sender)
         {
-            string message = Utils.CreateMessage(NoCarsPerCell, "change");
+            string message = Utils.BuildMessage(_noCarsPerCell, "change");
+            
             Send(sender, message);
         }
 
-        private void HandlePosition(string sender, string position)
+        private void HandlePosition(string sender, List<string> position)
         {
+            const int leftCell = -1;
+            const int upCell = 0;
+            const int rightCell = -1;
+            const Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Green;
+            const Utils.TrafficLightState upCellLight = Utils.TrafficLightState.Green;
+            const Utils.TrafficLightState rightCellLight = Utils.TrafficLightState.Green;
+            
             CarPositions.Add(sender, position);
-            int leftCell = -1, upCell = 0, rightCell = -1;
-            Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Green, 
-                upCellLight = Utils.TrafficLightState.Green, 
-                rightCellLight = Utils.TrafficLightState.Green;
             Send(sender, Utils.Str("move", leftCell, upCell, rightCell, 
                 leftCellLight, upCellLight, rightCellLight));
         }
         
-        private void RemoveCar(string sender, string position)
+        private void RemoveCar(string sender, List<string> position)
         {
-            string[] t = position.Split();
-            int x = Convert.ToInt32(t[0]);
-            int y = Convert.ToInt32(t[1]);
+            int x = Convert.ToInt32(position[0]);
+            int y = Convert.ToInt32(position[1]);
             
             CarPositions.Remove(sender);
             
-            NoCarsPerCell[x, y]--;
+            _noCarsPerCell[x, y]--;
         }
 
-        private void HandleChange(string sender, string position)
+        private void HandleChange(string sender, List<string> position)
         {
             // Get old and new positions
-            string[] oldT = CarPositions[sender].Split();
-            int oldX = Convert.ToInt32(oldT[0]);
-            int oldY = Convert.ToInt32(oldT[1]);
-            string[] newT = position.Split();
-            int newX = Convert.ToInt32(newT[0]);
-            int newY = Convert.ToInt32(newT[1]);
+            int oldX = Convert.ToInt32(CarPositions[sender][0]);
+            int oldY = Convert.ToInt32(CarPositions[sender][1]);
+            int newX = Convert.ToInt32(position[0]);
+            int newY = Convert.ToInt32(position[1]);
 
             Utils.TrafficLightState lightForStop = Utils.TrafficLightState.Red;
 
@@ -181,32 +174,32 @@ namespace TrafficSimulator
                 // Traffic light stop
                 Send(sender, "block");
             }
-            else if (NoCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
+            else if (_noCarsPerCell[newX, newY] < Utils.MaxNoCarsPerCell)
             {
                 // Go to next position
-                NoCarsPerCell[newX, newY]++;
+                _noCarsPerCell[newX, newY]++;
                 if (oldY != Utils.Size)
                 {
-                    NoCarsPerCell[oldX, oldY]--;
+                    _noCarsPerCell[oldX, oldY]--;
                 }
 
                 int leftCell = -1, upCell = -1, rightCell = -1;
                 Utils.TrafficLightState leftCellLight = Utils.TrafficLightState.Unavailable, 
                     upCellLight = Utils.TrafficLightState.Unavailable, 
                     rightCellLight = Utils.TrafficLightState.Unavailable;
-                if (newX - 2 > 0 && NoCarsPerCell[newX - 1, newY] != -1)
+                if (newX - 2 > 0 && _noCarsPerCell[newX - 1, newY] != -1)
                 {
-                    leftCell = NoCarsPerCell[newX - 1, newY];
+                    leftCell = _noCarsPerCell[newX - 1, newY];
                     leftCellLight = _trafficLightStates[newX - 2, newY];
                 }
-                if (newY - 2 > 0 && NoCarsPerCell[newX, newY - 1] != -1)
+                if (newY - 2 > 0 && _noCarsPerCell[newX, newY - 1] != -1)
                 {
-                    upCell = NoCarsPerCell[newX, newY - 1];
+                    upCell = _noCarsPerCell[newX, newY - 1];
                     upCellLight = _trafficLightStates[newX, newY - 2];
                 }
-                if (newX + 2 < Utils.Size && NoCarsPerCell[newX + 1, newY] != -1)
+                if (newX + 2 < Utils.Size && _noCarsPerCell[newX + 1, newY] != -1)
                 {
-                    rightCell = NoCarsPerCell[newX + 1, newY];
+                    rightCell = _noCarsPerCell[newX + 1, newY];
                     rightCellLight = _trafficLightStates[newX + 2, newY];
                 }
 

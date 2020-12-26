@@ -4,14 +4,14 @@ using System.Configuration;
 
 namespace TrafficSimulator
 {
-    public class Program
+    public static class Program
     {
         private static void Main(string[] args)
         {
             // Read control parameters
             // Traffic Lights Intelligence
-            string sAttr;
-            sAttr = ConfigurationManager.AppSettings.Get("TrafficLightIntelligence");
+            var sAttr = ConfigurationManager.AppSettings.Get("TrafficLightIntelligence") ?? throw 
+                new ArgumentNullException("ConfigurationManager.AppSettings.Get(\"TrafficLightIntelligence\")");
             Utils.TrafficLightIntelligenceState trafficLightIntelligence = 
                 (Utils.TrafficLightIntelligenceState) Enum.Parse(typeof(Utils.TrafficLightIntelligenceState), sAttr);
 
