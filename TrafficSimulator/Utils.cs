@@ -7,7 +7,7 @@ namespace TrafficSimulator
     public static class Utils
     {
         public const int Size = 7;
-        public const int NoCars = 100;
+        public const int NoCars = 50;
         public const int NoCarsPerCell = 3;                 // grid with NoCarsPerCell*NoCarsPerCell cars
         public const int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
         public const int NoStartingPoints = (Size + 1) / 2;

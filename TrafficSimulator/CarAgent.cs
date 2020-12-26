@@ -93,14 +93,17 @@ namespace TrafficSimulator
             Utils.TrafficLightState leftCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[3]);
             Utils.TrafficLightState upCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[4]);
             Utils.TrafficLightState rightCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[5]);
-
-            if (_carPriority == Utils.CarPriorityState.NoPriority)
+            
+            //Console.WriteLine(@"{0} {1} {2} {3} {4} {5}", leftCellNoCars, upCellNoCars, rightCellNoCars, leftCellLight, upCellLight, rightCellLight);
+            
+            int dx = _x - _finalX;
+            int dy = _y - _finalY;
+            int newX = _x, newY = _y;
+            
+            // If no priority or the cell isn't an intersection, get the next cell without any priority
+            if (!IsIntersection(_x, _y) || _carPriority == Utils.CarPriorityState.NoPriority)
             {
                 // Select next cell
-                int dx = _x - _finalX;
-                int dy = _y - _finalY;
-                int newX = _x, newY = _y;
-
                 if (Math.Abs(dx) > Math.Abs(dy))
                     newX -= Math.Sign(dx);
                 else
@@ -115,39 +118,133 @@ namespace TrafficSimulator
                         {
                             if (_x - Math.Sign(dx) >= 0 && _x - Math.Sign(dx) < Utils.Size)
                             {
-                                _x -= Math.Sign(dx);
+                                newX = _x - Math.Sign(dx);
+                                newY = _y;
                             }
                         }
-                        else
+                        else if (_x - 1 >= 0)
                         {
-                            if (_x - 1 >= 0) _x -= 1;
-                            else if (_x + 1 < Utils.Size) _x += 1;
+                            newX = _x - 1;
+                            newY = _y;
+                        }
+                        else if (_x + 1 < Utils.Size)
+                        {
+                            newX = _x + 1;
+                            newY = _y;
                         }
                     }
                     else if (newY == _y)
                     {
                         // unavailable cell is right or left => goes up
                         if (_y - 1 >= 0)
-                            _y -= 1;
+                        {
+                            newY = _y - 1;
+                            newX = _x;
+                        }
                     }
                 }
-                else
-                {
-                    _x = newX;
-                    _y = newY;
-                }
+                
+                _x = newX;
+                _y = newY;
             }
-            
-            // !! TO Add - select the next cell accordingly to the car priority
-            
+            // If the cell is an intersection and the priority is over the green light of the traffic light
             else if (_carPriority == Utils.CarPriorityState.GreenLight)
             {
-                //
+                // Select next cell accordingly to the priority
+                dx = _x - _finalX;
+
+                if (dx > 0) // if next direction is left
+                {
+                    if (leftCellLight == Utils.TrafficLightState.Green && leftCellNoCars != -1)
+                        _x -= 1;
+                    else if (upCellLight == Utils.TrafficLightState.Green && upCellNoCars != -1)
+                        _y -= 1;
+                    else if (rightCellLight == Utils.TrafficLightState.Green && rightCellNoCars != -1)
+                        _x += 1;
+                }
+                else if (dx < 0) // if next direction is right
+                {
+                    if (rightCellLight == Utils.TrafficLightState.Green && rightCellNoCars != -1)
+                        _x += 1;
+                    else if (upCellLight == Utils.TrafficLightState.Green && upCellNoCars != -1)
+                        _y -= 1;
+                    else if (leftCellLight == Utils.TrafficLightState.Green && leftCellNoCars != -1)
+                        _x -= 1;
+                }
+                else // if next direction is up
+                {
+                    if (upCellLight == Utils.TrafficLightState.Green && upCellNoCars != -1)
+                        _y -= 1;
+                    else if (leftCellLight == Utils.TrafficLightState.Green && leftCellNoCars != -1)
+                        _x -= 1;
+                    else if (rightCellLight == Utils.TrafficLightState.Green && rightCellNoCars != -1)
+                        _x += 1;
+                }
             }
+            // If the cell is an intersection and the priority is over the number of cars from the cell
             else if (_carPriority == Utils.CarPriorityState.LowerTraffic)
             {
-                //
+                // Select next cell accordingly to the priority
+                dx = _x - _finalX;
+                int minIndex = GetMinCarsDirection(leftCellNoCars, upCellNoCars, rightCellNoCars);
+                
+                if (dx > 0) // if next direction is left
+                {
+                    if (leftCellNoCars != -1 && minIndex == 1)
+                        _x -= 1;
+                    else if (upCellNoCars != -1 && minIndex == 2)
+                        _y -= 1;
+                    else if (rightCellNoCars != -1 && minIndex == 3)
+                        _x += 1;
+                }
+                else if (dx < 0) // if next direction is right
+                {
+                    if (rightCellNoCars != -1 && minIndex == 3)
+                        _x += 1;
+                    else if (upCellNoCars != -1 && minIndex == 2)
+                        _y -= 1;
+                    else if (leftCellNoCars != -1 && minIndex == 1)
+                        _x -= 1;
+                }
+                else // if next direction is up
+                {
+                    if (upCellNoCars != -1 && minIndex == 2)
+                        _y -= 1;
+                    else if (leftCellNoCars != -1 && minIndex == 1)
+                        _x -= 1;
+                    else if (rightCellNoCars != -1 && minIndex == 3)
+                        _x += 1;
+                }
             }
+        }
+
+        private int GetMinCarsDirection(int left, int up, int right)
+        {
+            int min = Int32.MaxValue;
+            int minIndex = 0;
+
+            if (left != -1)
+            {
+                min = left;
+                minIndex = 1;
+            }
+            if (up != -1 && up < min)
+            {
+                min = up;
+                minIndex = 2;
+            }
+
+            if (right != -1 && right < min)
+            {
+                minIndex = 3;
+            }
+
+            return minIndex;
+        }
+        
+        private bool IsIntersection(int x, int y)
+        {
+            return (y > 3 && y < Utils.Size - 3 && x % 2 == 0);
         }
     }
 }
