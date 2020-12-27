@@ -33,9 +33,9 @@ namespace TrafficSimulator
                 (Utils.CarPriorityState) Enum.Parse(typeof(Utils.CarPriorityState), sAttr);
 
             // Build environment
-            TurnBasedEnvironment env = new TurnBasedEnvironment(0, 100);
+            TurnBasedEnvironment env = new TurnBasedEnvironment(0, Utils.NoMsPerTurn);
             var intersectionAgent = new IntersectionAgent();
-        
+            
             // Traffic lights
             int index = 0;
             Utils.TrafficLightState initialState = Utils.TrafficLightState.Green;
