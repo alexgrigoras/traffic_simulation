@@ -4,16 +4,9 @@
     <projectFile>Reactive/Reactive.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="Updated project">
+    <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="Updated image">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reactive.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Reactive.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/TrafficSimulator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/TrafficSimulator.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Release/ActressMas.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Release/ActressMas.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +124,7 @@
       <workItem from="1608920687236" duration="9962000" />
       <workItem from="1608974280727" duration="233000" />
       <workItem from="1608998165261" duration="19277000" />
-      <workItem from="1609085061836" duration="5306000" />
+      <workItem from="1609085061836" duration="7534000" />
     </task>
     <task id="LOCAL-00001" summary="Changed planet to intersection and window name">
       <created>1608921229131</created>
@@ -266,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609088895498</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Updated image">
+      <created>1609093748647</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1609093748647</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,6 +304,7 @@
     <MESSAGE value="Updated implementation and added usage" />
     <MESSAGE value="Added layout image" />
     <MESSAGE value="Updated project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated project" />
+    <MESSAGE value="Updated image" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated image" />
   </component>
 </project>

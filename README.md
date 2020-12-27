@@ -16,32 +16,54 @@ Possible obstacles are:
 
 ## Implementation
 The elements of the multi-agent system:
-- Environment: turn-based
-- Agents:
-    - Intersection
-    - Cars: turn-based
-    - Traffic lights: turn-based
+- **Configuration parameters:** taken from configuration file;
+- **Environment:** turn-based;
+- **User Interface:** intersection form;
+- **Agents:**
+    - *Intersection:* turn-based;
+    - *Cars:* turn-based;
+    - *Traffic lights:* turn-based.
     
-Environment:
-- 7x7 grid
+###User Interface
+The image below is a screenshot of the application.
+The A, B, C and D cells represent the starting points of the agent and the first row represents the destination of the agents.
+The white cells are the road segments where the cars can go. The cars are represented by squares with different number and colors.
+The black cells are unavailable road segments where cars cannot go. The cars can move to left, up or right. They need to continue or stop when encountering a traffic light on the left, up or right, depending on the light state (green / red).
+When arriving to the destination, the cars disappear from the traffic.
 
 ![Layout image](images/layout.png)
 
-Car agent:
-- Position (x, y)
-- State:
-    - Moving (front, left, right)
-    - Waiting
-- Starting position (A / B / C / D)
-- Final destination (M / N / O / P)
+###Intersection agent
+- **Car Positions**;
+- **Traffic lights Positions**;
+- **Traffic lights Status**;
+- **Number of cars per each cell**;
+- Handles the messages from the CarAgent and TrafficLightAgent;
+- Sends traffic information to CarAgent and TrafficLightAgent;
+- Sends continue or stop to CarAgent based on the traffic light status encountered.
 
-Traffic light agent:
-- Position (x, y)
-- State:
-    - Green (Green - horizontal, Red - vertical)
-    - Red: (Red - horizontal, Green - vertical)
+###Car agent
+- **Position** (x, y);
+- **Starting position** (A / B / C / D);
+- **Final destination** (M / N / O / P);
+- **Skipped turns:** the delay  until the car starts;
+- Starts when the skipped number of turns have passed;
+- Computes the path to the destination, depending on the priority;
+- Stops if a red light is encountered or continues if it's green.
 
-The multi-agent framework is taken from implementation taken from [Florin Leon](https://github.com/florinleon) / [ActressMas](https://github.com/florinleon/ActressMas)
+###Traffic light agent
+- **Position** (x, y);
+- **State:**
+    - **Green** (Green - vertical, Red - horizontal);
+    - **Red:** (Red - vertical, Green - horizontal).
+- The traffic light have a specified switching time;
+- Adjacent traffic lights from each line have opposing values;
+- Changes the state when a specified number of turns have passed;
+- Receives traffic information to change the state depending on the intelligence level;
+- Algorithms for adaptive changing of the switching time are not implemented.
+
+###Multi-agent framework
+The framework used can be found at [Florin Leon](https://github.com/florinleon) / [ActressMas](https://github.com/florinleon/ActressMas).
 
 ## Usage
 The system should be controllable by multiple user-defined parameters, which should be read from a simple config file. The control parameters are:
@@ -54,7 +76,7 @@ The system should be controllable by multiple user-defined parameters, which sho
 - **CarsRate[A,B,C,D]** - the rate with which cars are generated at each entry point A, B, C, D; cars rate = cars/turn; the delay between turns can be selected is a predefined constant;
 - **CarsPriority** - whether cars will prioritize street lights or the amount of traffic, meaning:
     - **NoPriority** - the cars select the path to the destination without taking into consideration the amount of traffic or the traffic lights;
-    - **GreenLight** - whether a car at an intersection will choose a street segment with a green light or
+    - **GreenLight** - whether a car at an intersection will choose a street segment with a green light;
     - **LowerTraffic** - whether a car will wait at a red light if there is lower traffic on the following street segment.
 
 ## License
