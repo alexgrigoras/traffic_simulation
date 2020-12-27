@@ -14,18 +14,6 @@ Possible obstacles are:
 - **binary:** a red street light for that direction;
 - **continuous:** the amount of traffic in the desired direction (the number of cars in the corresponding road segment).
 
-The system should be controllable by multiple user-defined parameters, which should be read from a simple config file. The control parameters are:
-- the intelligence of traffic lights:
-    - non-intelligent traffic light: the switching time is constant, no matter the traffic;
-    - intelligent: the switching time depends on the traffic; in this case, another parameter would be the level of intelligence:
-        - level 1: the street light has knowledge of the amount of traffic in its adjacent street segments;
-        - level 2: the street light has knowledge of the amount of traffic as far as two street segments away from its position;
-        - level 3: the street light has full knowledge of the amount of traffic, on all street segments.
-- the rate with which cars are generated at each entry point A, B, C, D. Rate = cars/second, cars/minute, etc;
-- whether cars will prioritize street lights or the amount of traffic, meaning:
-    - whether a car at an intersection will choose a street segment with a green light or
-    - whether a car will wait at a red light if there is lower traffic on the following street segment.
-
 ## Implementation
 The elements of the multi-agent system:
 - Environment: turn-based
@@ -36,6 +24,8 @@ The elements of the multi-agent system:
     
 Environment:
 - 7x7 grid
+
+![Layout image](images/layout.png)
 
 Car agent:
 - Position (x, y)
@@ -48,13 +38,24 @@ Car agent:
 Traffic light agent:
 - Position (x, y)
 - State:
-    - Green - vertical, Red - horizontal
-    - Red - vertical, Green - horizontal
+    - Green (Green - horizontal, Red - vertical)
+    - Red: (Red - horizontal, Green - vertical)
 
-Control parameters:
-- The intelligence of traffic lights
-- Cars rate
-- Cars priority
+The multi-agent framework is taken from implementation taken from [Florin Leon](https://github.com/florinleon) / [ActressMas](https://github.com/florinleon/ActressMas)
+
+## Usage
+The system should be controllable by multiple user-defined parameters, which should be read from a simple config file. The control parameters are:
+- **TrafficLightIntelligence** - the intelligence of traffic lights:
+    - **L0:** non-intelligent traffic light: the switching time is constant, no matter the traffic;
+    - intelligent: the switching time depends on the traffic; in this case, another parameter would be the level of intelligence:
+        - **L1:** the street light has knowledge of the amount of traffic in its adjacent street segments;
+        - **L2:** the street light has knowledge of the amount of traffic as far as two street segments away from its position;
+        - **L3:** the street light has full knowledge of the amount of traffic, on all street segments.
+- **CarsRate[A,B,C,D]** - the rate with which cars are generated at each entry point A, B, C, D; cars rate = cars/turn; the delay between turns can be selected is a predefined constant;
+- **CarsPriority** - whether cars will prioritize street lights or the amount of traffic, meaning:
+    - **NoPriority** - the cars select the path to the destination without taking into consideration the amount of traffic or the traffic lights;
+    - **GreenLight** - whether a car at an intersection will choose a street segment with a green light or
+    - **LowerTraffic** - whether a car will wait at a red light if there is lower traffic on the following street segment.
 
 ## License
 The software is licensed under the MIT license.
