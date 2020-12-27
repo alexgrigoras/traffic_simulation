@@ -1,0 +1,4 @@
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csprojAssemblyReference.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.IntersectionForm.resources
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csproj.GenerateResource.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csproj.CoreCompileInputs.cache
