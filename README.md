@@ -24,7 +24,7 @@ The elements of the multi-agent system:
     - *Cars:* turn-based;
     - *Traffic lights:* turn-based.
     
-###User Interface
+### User Interface
 The image below is a screenshot of the application.
 The A, B, C and D cells represent the starting points of the agent and the first row represents the destination of the agents.
 The white cells are the road segments where the cars can go. The cars are represented by squares with different number and colors.
@@ -33,7 +33,7 @@ When arriving to the destination, the cars disappear from the traffic.
 
 ![Layout image](images/layout.png)
 
-###Intersection agent
+### Intersection agent
 - **Car Positions**;
 - **Traffic lights Positions**;
 - **Traffic lights Status**;
@@ -42,7 +42,7 @@ When arriving to the destination, the cars disappear from the traffic.
 - Sends traffic information to CarAgent and TrafficLightAgent;
 - Sends continue or stop to CarAgent based on the traffic light status encountered.
 
-###Car agent
+### Car agent
 - **Position** (x, y);
 - **Starting position** (A / B / C / D);
 - **Final destination** (M / N / O / P);
@@ -51,7 +51,7 @@ When arriving to the destination, the cars disappear from the traffic.
 - Computes the path to the destination, depending on the priority;
 - Stops if a red light is encountered or continues if it's green.
 
-###Traffic light agent
+### Traffic light agent
 - **Position** (x, y);
 - **State:**
     - **Green** (Green - vertical, Red - horizontal);
@@ -62,7 +62,7 @@ When arriving to the destination, the cars disappear from the traffic.
 - Receives traffic information to change the state depending on the intelligence level;
 - Algorithms for adaptive changing of the switching time are not implemented.
 
-###Multi-agent framework
+### Multi-agent framework
 The framework used can be found at [Florin Leon](https://github.com/florinleon) / [ActressMas](https://github.com/florinleon/ActressMas).
 
 ## Usage
