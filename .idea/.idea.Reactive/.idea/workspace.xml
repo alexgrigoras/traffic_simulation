@@ -5,43 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="Updated project">
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/Reactive.vshost.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/Reactive.vshost.exe.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/Reactive.vshost.exe.manifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reactive.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Reactive.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/TrafficSimulator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/TrafficSimulator.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/DesignTimeResolveAssemblyReferences.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.csproj.GenerateResource.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.csprojAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/Reactive.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Release/ActressMas.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Release/ActressMas.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/DesignTimeResolveAssemblyReferences.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/Reactive.PlanetForm.resources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/Reactive.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/Reactive.csproj.GenerateResource.Cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/Reactive.csprojResolveAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/Reactive.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/Reactive.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TrafficSimulator.IntersectionForm.resources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TrafficSimulator.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TrafficSimulator.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TrafficSimulator.csproj.GenerateResource.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Release/TrafficSimulator.csprojAssemblyReference.cache" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +131,7 @@
       <workItem from="1608920687236" duration="9962000" />
       <workItem from="1608974280727" duration="233000" />
       <workItem from="1608998165261" duration="19277000" />
-      <workItem from="1609085061836" duration="3709000" />
+      <workItem from="1609085061836" duration="5306000" />
     </task>
     <task id="LOCAL-00001" summary="Changed planet to intersection and window name">
       <created>1608921229131</created>
@@ -287,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609088499047</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Updated project">
+      <created>1609088895498</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1609088895498</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
