@@ -4,10 +4,11 @@
     <projectFile>Reactive/Reactive.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="Added traffic light intelligence modes (in the latest commit)">
+    <list default="true" id="98c4124e-704d-40c8-af0a-f3296c8008d9" name="Default Changelist" comment="Corrected car numbers and hardcoded values">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Reactive/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/App.config" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/App.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrafficSimulator/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/Utils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/bin/Debug/TrafficSimulator.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" beforeDir="false" afterPath="$PROJECT_DIR$/TrafficSimulator/obj/Debug/TrafficSimulator.exe" afterDir="false" />
@@ -38,29 +39,18 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/Utils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/CarAgent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62FFEEB7-EC02-4BEA-B61E-5FBF8D44AC5B/bf/c6e0f3d8/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/TrafficLightAgent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/IntersectionAgent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/220F2AAB-ED1D-4738-94A8-8B65AAF6C105/1e/8ee43d9c/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F556D682-2BBF-4841-96BE-2E4486C9052E/bb/4a436749/TurnBasedEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/Utils.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/IntersectionAgent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/CarAgent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TrafficSimulator/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E9166BF-CA65-4377-B09C-EA42D003812D/fc/d62b3eca/Image.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/220F2AAB-ED1D-4738-94A8-8B65AAF6C105/8c/f65b0927/Convert.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/CarAgent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F556D682-2BBF-4841-96BE-2E4486C9052E/8f/8fb2eead/TurnBasedEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F556D682-2BBF-4841-96BE-2E4486C9052E/fd/36e54a2c/TurnBasedAgent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/Utils.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/University/Master/Year 2/MAS/Project/traffic_simulation/TrafficSimulator/TrafficLightAgent.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -75,12 +65,12 @@
       <option value="$PROJECT_DIR$/TrafficSimulator/app.config.xml" />
       <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.Designer.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionAgent.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/App.config" />
       <option value="$PROJECT_DIR$/TrafficSimulator/CarAgent.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/TrafficLightAgent.cs" />
-      <option value="$PROJECT_DIR$/TrafficSimulator/Program.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/IntersectionForm.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/Program.cs" />
       <option value="$PROJECT_DIR$/TrafficSimulator/Utils.cs" />
+      <option value="$PROJECT_DIR$/TrafficSimulator/App.config" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kk3x2hm8ATvjaalbJcy3C07XmY" />
@@ -136,7 +126,8 @@
       <workItem from="1608825234100" duration="17765000" />
       <workItem from="1608920687236" duration="9962000" />
       <workItem from="1608974280727" duration="233000" />
-      <workItem from="1608998165261" duration="19185000" />
+      <workItem from="1608998165261" duration="19277000" />
+      <workItem from="1609085061836" duration="610000" />
     </task>
     <task id="LOCAL-00001" summary="Changed planet to intersection and window name">
       <created>1608921229131</created>
@@ -222,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609022646782</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Corrected car numbers and hardcoded values">
+      <created>1609023902299</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1609023902299</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +252,7 @@
     <MESSAGE value="Added priority for the cars" />
     <MESSAGE value="Corrected final position and other errors" />
     <MESSAGE value="Added traffic light intelligence modes (in the latest commit)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added traffic light intelligence modes (in the latest commit)" />
+    <MESSAGE value="Corrected car numbers and hardcoded values" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected car numbers and hardcoded values" />
   </component>
 </project>

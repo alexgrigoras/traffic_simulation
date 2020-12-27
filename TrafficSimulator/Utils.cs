@@ -8,10 +8,11 @@ namespace TrafficSimulator
     {
         public const int Size = 7;
         public const int NoCars = 100;
-        public const int NoCarsPerCell = 3;                 // grid with NoCarsPerCell*NoCarsPerCell cars
+        public const int NoCarsPerCell = 3;                             // grid with NoCarsPerCell*NoCarsPerCell cars
         public const int MaxNoCarsPerCell = NoCarsPerCell * NoCarsPerCell;
         public const int NoStartingPoints = (Size + 1) / 2;
-        public const int LightSwitchingTime = 10;           // number of turns to change light
+        public const int LightSwitchingTime = 5;                        // number of turns to change light
+        public const bool MultipleCarsPerTurn = false;                   // if there are multiple spawned cars per turn
         private static TrafficLightIntelligenceState _intelligenceState = TrafficLightIntelligenceState.L0;
 
         public enum TrafficLightState { Green, Red, Unavailable };

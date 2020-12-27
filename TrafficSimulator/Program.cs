@@ -59,6 +59,7 @@ namespace TrafficSimulator
 
             // Cars
             int carIndex = 0;
+            int skippedTurns = 1;
             int noCarsLeft = Utils.NoCars;
             while (noCarsLeft != 0)
             {
@@ -66,12 +67,14 @@ namespace TrafficSimulator
                 {
                     for (int j = 0; j < carsRate[i] && noCarsLeft != 0; j++)
                     {
-                        var explorerAgent = new CarAgent(carIndex, carIndex+1, i*2, carsPriority);
+                        var explorerAgent = new CarAgent(carIndex, skippedTurns, i*2, carsPriority);
                         env.Add(explorerAgent, "explorer" + carIndex);
                         noCarsLeft--;
                         carIndex++;
                     }
+                    if(!Utils.MultipleCarsPerTurn) skippedTurns++;
                 }
+                if(Utils.MultipleCarsPerTurn) skippedTurns++;
             }
             env.Add(intersectionAgent, "intersection");
         
