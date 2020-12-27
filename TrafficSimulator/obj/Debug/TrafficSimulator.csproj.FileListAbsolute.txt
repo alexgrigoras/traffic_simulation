@@ -1,14 +1,3 @@
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\bin\Debug\TrafficSimulator.exe
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\bin\Debug\ActressMas.dll
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.csprojAssemblyReference.cache
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.IntersectionForm.resources
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.cache
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.CoreCompileInputs.cache
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.CopyComplete
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.exe
-D:\University\Master\Year 2\MAS\Labs\Lab2\Reactive_original\Reactive\TrafficSimulator\obj\Debug\TrafficSimulator.pdb
 D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
 D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Debug\TrafficSimulator.exe
 D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
