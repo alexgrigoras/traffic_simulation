@@ -69,7 +69,6 @@ namespace TrafficSimulator
                     }
                     else if (action == "move" && IsAtDestination())
                     {
-                        //_state = State.Free;
                         Console.WriteLine(@"	[{0}]: Arrived at destination", this.Name);
                         Send("intersection", Utils.Str("finish",  _x, _y, _id));
                         this.Stop();
