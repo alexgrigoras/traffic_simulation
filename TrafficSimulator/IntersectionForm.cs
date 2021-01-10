@@ -40,7 +40,7 @@ namespace TrafficSimulator
         {
             Type brushesType = typeof(Brushes);
             PropertyInfo[] properties = brushesType.GetProperties();
-            int selectedValue = Utils.Map(value, 0, Utils.NoCars - 1, 0, properties.Length-1);
+            int selectedValue = Utils.Map(value, 0, Utils.NoCars, 0, properties.Length-1);
             
             return (Brush)properties[selectedValue].GetValue(null, null);
         }

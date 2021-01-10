@@ -198,7 +198,6 @@ namespace TrafficSimulator
                 }
                 if (newY - 2 > 0 && _noCarsPerCell[newX, newY - 1] != -1)
                 {
-                    //Console.WriteLine("-- {0} {1}", _noCarsPerCell[newX, newY - 1], _trafficLightStates[newX, newY - 2]);
                     upCell = _noCarsPerCell[newX, newY - 1];
                     upCellLight = _trafficLightStates[newX, newY - 2];
                 }
@@ -209,7 +208,8 @@ namespace TrafficSimulator
                 }
 
                 CarPositions[sender] = position;
-                Send(sender, Utils.Str("move", leftCell, upCell, rightCell, leftCellLight, upCellLight, rightCellLight));
+                Send(sender, Utils.Str("move", leftCell, upCell, rightCell, leftCellLight, upCellLight, 
+                    rightCellLight));
             }
             else
             {

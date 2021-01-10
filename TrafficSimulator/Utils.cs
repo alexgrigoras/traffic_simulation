@@ -178,8 +178,6 @@ namespace TrafficSimulator
                     }
                     break;
             }
-            
-            //Console.WriteLine(sb.ToString());
 
             return sb.ToString();
         }

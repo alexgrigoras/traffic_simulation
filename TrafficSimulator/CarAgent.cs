@@ -45,11 +45,6 @@ namespace TrafficSimulator
             Send("intersection", Utils.Str("position", _x, _y, _id));
         }
 
-        private bool IsAtDestination()
-        {
-            return (_x == _finalX && _y == _finalY);
-        }
-
         public override void Act(Queue<Message> messages)
         {
             if (_turns > _skippedTurns)
@@ -64,7 +59,7 @@ namespace TrafficSimulator
 
                     if (action == "block")
                     {
-                        Console.WriteLine(@"	[{0}]: waits at RED", this.Name);
+                        Console.WriteLine(@"	[{0}]: waits", this.Name);
                         Send("intersection", Utils.Str("change", _x, _y, _id));
                     }
                     else if (action == "move" && IsAtDestination())
@@ -92,9 +87,6 @@ namespace TrafficSimulator
             Utils.TrafficLightState leftCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[3]);
             Utils.TrafficLightState upCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[4]);
             Utils.TrafficLightState rightCellLight = (Utils.TrafficLightState) Enum.Parse(typeof(Utils.TrafficLightState), t[5]);
-            
-            //Console.WriteLine(@"{0} {1} {2} {3} {4} {5}", leftCellNoCars, upCellNoCars, rightCellNoCars, leftCellLight, upCellLight, rightCellLight);
-            
             int dx = _x - _finalX;
             int dy = _y - _finalY;
             int newX = _x, newY = _y;
@@ -241,6 +233,11 @@ namespace TrafficSimulator
             return minIndex;
         }
         
+        private bool IsAtDestination()
+        {
+            return (_x == _finalX && _y == _finalY);
+        }
+
         private bool IsIntersection(int x, int y)
         {
             return (y > 3 && y < Utils.Size - 3 && x % 2 == 0);
