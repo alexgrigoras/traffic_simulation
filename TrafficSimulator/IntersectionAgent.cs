@@ -53,6 +53,7 @@ namespace TrafficSimulator
 
         public override void Act(Queue<Message> messages)
         {
+            Console.WriteLine(@"New turn");
             while(messages.Count > 0)
             {
                 var message = messages.Dequeue();
