@@ -1,0 +1,10 @@
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Debug\TrafficSimulator.exe.config
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Debug\TrafficSimulator.exe
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Debug\TrafficSimulator.pdb
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.csprojAssemblyReference.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.IntersectionForm.resources
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.GenerateResource.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.CoreCompileInputs.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.csproj.CopyComplete
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.exe
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Debug\TrafficSimulator.pdb

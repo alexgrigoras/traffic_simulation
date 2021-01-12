@@ -1,0 +1,11 @@
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csprojAssemblyReference.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.IntersectionForm.resources
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csproj.GenerateResource.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csproj.CoreCompileInputs.cache
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Release\TrafficSimulator.exe.config
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Release\TrafficSimulator.exe
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Release\TrafficSimulator.pdb
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\bin\Release\ActressMas.dll
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.csproj.CopyComplete
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.exe
+D:\University\Master\Year 2\MAS\Project\traffic_simulation\TrafficSimulator\obj\Release\TrafficSimulator.pdb
