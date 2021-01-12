@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Afi\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Afi\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Reactive.-1091565892.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Afi\Documents\GitHub\traffic_simulation" t="IncludeFlat">
+    <e p="C:\Users\alex_\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\alex_\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Reactive.-81355035.00" t="ExcludeRecursive" />
+    <e p="D:\University\Master\Year 2\MAS\Project\traffic_simulation" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="Reactive.sln" t="IncludeFlat" />
-      <e p="traffic_simulator" t="IncludeRecursive">
+      <e p="TrafficSimulator" t="IncludeRecursive">
         <e p="App.config" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="CarAgent.cs" t="Include" />
-        <e p="IntersectionEnv.cs" t="Include" />
+        <e p="IntersectionAgent.cs" t="Include" />
         <e p="IntersectionForm.cs" t="Include" />
         <e p="IntersectionForm.Designer.cs" t="Include" />
         <e p="IntersectionForm.resx" t="Include" />
@@ -19,9 +19,8 @@
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
-        <e p="SemaphoreAgent.cs" t="Include" />
-        <e p="StreetGridAgent.cs" t="Include" />
-        <e p="traffic_simulator.csproj" t="IncludeRecursive" />
+        <e p="TrafficLightAgent.cs" t="Include" />
+        <e p="TrafficSimulator.csproj" t="IncludeRecursive" />
         <e p="Utils.cs" t="Include" />
       </e>
     </e>
